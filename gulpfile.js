@@ -16,7 +16,8 @@ const gulp = {
   babelify: require('babelify'),
   source: require('vinyl-source-stream'),
   env: require('babel-preset-env'),
-  browserSync: require('browser-sync').create()
+  browserSync: require('browser-sync').create(),
+  historyApiFallback: require('connect-history-api-fallback')
 }
 
 const config = {
@@ -90,7 +91,7 @@ gulp.gulp.task('browsersync', () => {
   gulp.browserSync.init({
     server: {
       baseDir: "./public",
-      middleware: [ historyApiFallback() ]
+      middleware: [ gulp.historyApiFallback() ]
     },
     notify: false
   })
