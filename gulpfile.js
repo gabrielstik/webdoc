@@ -87,7 +87,7 @@ gulp.gulp.task('apache', () => {
 })
 
 gulp.gulp.task('browsersync', () => {
-  gulp/browserSync.init({
+  gulp.browserSync.init({
     server: {
       baseDir: "./public",
       middleware: [ historyApiFallback() ]
