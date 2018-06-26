@@ -17,6 +17,36 @@ export default class StoryController {
     this.intersectionObservers()
     this.videoPlayers()
     this.scrollAnimation()
+    this.navigation()
+  }
+
+  navigation() {
+    const lethargy = new Lethargy()
+    let currentScroll = 0
+    let isScrolling = false
+
+    window.addEventListener('wheel', (e) => {
+      e.preventDefault()
+      e.stopPropagation()
+      if (lethargy.check(e) !== false) {
+        if (isScrolling == false) {
+          if (lethargy.check(e) === -1) {
+            currentScroll += 100
+          }
+          if (lethargy.check(e) === 1) {
+            currentScroll -= 100
+          }
+          isScrolling = true
+          setTimeout(() => {
+            isScrolling = false
+          }, 2000)
+        }
+        TweenMax.to(document.body, .5,
+          { transform: `translateY(-${currentScroll}vh)`, ease: Power1.easeOut }
+        )
+        window.scrollY = currentScroll
+      }
+    })
   }
 
   intersectionObservers() {
@@ -40,8 +70,8 @@ export default class StoryController {
     for (const $tmAsideImage of $tmAsideImages) {
       const tmAsideImagesObserver = new IntersectionObserver(() => {
         TweenMax.to($tmAsideImage, 1,
-        { scale: '1.02', ease: Power1.easeOut, delay: 1 }
-      )
+          { scale: '1.02', ease: Power1.easeOut, delay: 1 }
+        )
       })
       tmAsideImagesObserver.observe($tmAsideImage)
     }
