@@ -69,7 +69,7 @@ export default class Router {
   route(route) {
     switch (route) {
       case '':
-        this.ajax('earphones', 'intro')
+        this.ajax('cover', 'intro')
         break
       default:
         this.ajax('notfound')
