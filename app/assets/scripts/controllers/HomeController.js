@@ -1,5 +1,4 @@
 import Parallax from '../modules/Parallax'
-import GraphCanvas from '../modules/GraphCanvas'
 
 export default class HomeController {
 
