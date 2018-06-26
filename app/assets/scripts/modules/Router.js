@@ -1,7 +1,7 @@
 export default class Router {
 
-  constructor(viewControllers) {
-    this.viewControllers = viewControllers
+  constructor(controllers) {
+    this.controllers = controllers
 
     const $links = document.querySelectorAll('.route-link')
 
@@ -35,6 +35,7 @@ export default class Router {
 
         switch (route) {
           case 'home':
+            this.controllers.home.init()
             break;
         }
         this.clearOldDom(route)
