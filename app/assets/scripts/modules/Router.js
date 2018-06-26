@@ -22,21 +22,20 @@ export default class Router {
           case 'cover':
             this.controllers.home.initCover()
             break;
+          case 'cover':
+            this.controllers.story.init('paris-seine')
+            break;
         }
         this.clearOldDom(route)
 
         const $links = document.querySelectorAll('.route-link')
         for (const $link of $links) {
           const route = $link.dataset.url
-          switch (route) {
-            case 'map':
-              $link.addEventListener('click', (e) => {
-                e.preventDefault()
-                this.route(route)
-                this.pushRoute(route)
-              })
-              break
-          }
+          $link.addEventListener('click', (e) => {
+            e.preventDefault()
+            this.route(route)
+            this.pushRoute(route)
+          })
         }
       }
     }
@@ -69,6 +68,9 @@ export default class Router {
     switch (route) {
       case '':
         this.ajax('cover', 'intro')
+        break
+      case 'paris-seine':
+        this.ajax('paris-seine', 'stories')
         break
       case 'home':
         this.ajax('home')
