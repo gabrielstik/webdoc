@@ -100,6 +100,21 @@ export default class VideoPlayer
 		{
 			this.updateCurrentTime(event)
 		})
+
+		this.videoContainer.addEventListener('mousemove', () => 
+		{
+			this.gradient.style.opacity = '1'
+			this.videoTitle.style.opacity = '1'
+			this.videoContainer.style.cursor = 'default'
+			
+
+			setTimeout(() => 
+			{
+				this.gradient.style.opacity = '0'
+				this.videoTitle.style.opacity = '0'
+				this.videoContainer.style.cursor = 'none'
+			}, 1000)
+		})
   }
 
   init()
