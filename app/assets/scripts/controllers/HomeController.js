@@ -1,3 +1,5 @@
+import Parallax from '../modules/Parallax'
+
 export default class HomeController {
 
   initCover() {
@@ -11,5 +13,7 @@ export default class HomeController {
     TweenMax.from('.cover__button', 1,
       { opacity: 0, ease: Power1.easeOut, delay: .7 }
     )
+
+    new Parallax('cover__image', 1, true)
   }
 }
