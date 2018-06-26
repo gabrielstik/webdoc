@@ -1,0 +1,96 @@
+.video
+  width 800px
+
+.videoPlayer
+  position relative
+  width 100%
+
+.videoPlayer__video
+  width 100%
+
+// Video hover
+.video:hover .videoPlayer__gradient
+.video:hover .videoPlayer__title
+  opacity 1
+
+.videoPlayer__timeline
+  width 100%
+  height 14px
+  position absolute
+  bottom 0
+
+  background-color $grey
+  cursor pointer
+  transform-origin bottom
+
+.videoPlayer__timelineFill
+  width 100%
+  height 100%
+
+  background-color $blue
+
+  transform-origin left
+  transform scaleX(0)
+
+// Gradient
+.videoPlayer__gradient
+  width 100%
+  height 100%
+  position absolute
+  top 0
+
+  background linear-gradient(to bottom, rgba(0, 0, 0, 0), black)
+
+  opacity 0
+  pointer-events none
+  transition opacity 0.3s ease
+
+// Video title
+.videoPlayer__title
+  position absolute
+  bottom 20px
+  left 10px
+
+  color $white
+
+  opacity 0
+  transition opacity 0.3s ease
+  user-select none
+
+// Play pause icons
+.videoPlayer__playIcon
+  width 0 
+  height 0
+  position absolute
+  left 50%
+  top 50%
+
+  border-style solid
+  border-width 30px 0 30px 40px
+  border-color transparent transparent transparent $blue
+
+  pointer-events none
+  opacity 0
+  transform translateX(-40%) translateY(-50%)
+  transition opacity 200ms ease
+
+.videoPlayer__pauseIcon
+  width 40px
+  height 42px
+  position absolute
+  left 50%
+  top 50%
+  display flex
+  justify-content space-between
+
+  pointer-events none
+  opacity 0
+  transform translateX(-50%) translateY(-50%)
+  transition opacity 200ms ease
+
+.videoPlayer__pauseBar
+  width 10px
+  height 100%
+
+  background-color $blue
+
