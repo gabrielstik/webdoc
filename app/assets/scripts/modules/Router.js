@@ -3,25 +3,10 @@ export default class Router {
   constructor(controllers) {
     this.controllers = controllers
 
-    const $links = document.querySelectorAll('.route-link')
-
     window.addEventListener('popstate', () => {
       this.route(this.pullRoute())
     })
     this.init()
-    
-    for (const $link of $links) {
-      const route = $link.dataset.url
-      switch (route) {
-        case 'home':
-          $link.addEventListener('click', (e) => {
-            e.preventDefault()
-            this.route(route)
-            this.pushRoute(route)
-          })
-          break
-      }
-    }
   }
 
   ajax(route, subroute = '') {
@@ -39,6 +24,21 @@ export default class Router {
             break;
         }
         this.clearOldDom(route)
+
+        const $links = document.querySelectorAll('.route-link')
+        for (const $link of $links) {
+          const route = $link.dataset.url
+          console.log($link)
+          switch (route) {
+            case 'map':
+              $link.addEventListener('click', (e) => {
+                e.preventDefault()
+                this.route(route)
+                this.pushRoute(route)
+              })
+              break
+          }
+        }
       }
     }
     http.open('GET', url, true)
@@ -70,6 +70,9 @@ export default class Router {
     switch (route) {
       case '':
         this.ajax('cover', 'intro')
+        break
+      case 'map':
+        this.ajax('map', 'map')
         break
       default:
         this.ajax('notfound')
