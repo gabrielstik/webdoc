@@ -1,17 +1,44 @@
 .map
   height 100vh
-  padding-top 15vh
   background-color $darkGrey
   color $white
 
-  &__image
-    width 100vw
-    height 100vh
-    position fixed
-    top 0
-    left 0
+.infos
+  width 35vw
+  height 100vh
+  padding 10vh 50px
+  background-color $black
+  position fixed
+  top 0
+  right 0
 
-    img
-      width 100%
-      height 100%
-      object-fit cover
+  &__title
+    font-family 'DIN'
+    font-size 5em
+    text-transform uppercase
+
+  &__themes
+    margin-top 50px
+
+  &__theme
+    margin-top 1em
+    padding 22px 0 18px 0
+    border solid 1px $white
+    font-family 'Averta'
+    font-weight bold
+    font-size 2.7em
+    text-align center
+    text-transform uppercase
+
+    &.selected
+      color $black
+      background-color $white
+
+  &__text
+    margin-top 3em
+    font-family 'Averta'
+    font-size 2.5em
+    line-height 1.6em
+
+  &__button
+    margin-top 2em
