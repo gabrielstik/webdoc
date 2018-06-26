@@ -1,3 +1,5 @@
+import VideoPlayer from '../modules/VideoPlayer'
+
 export default class HomeController {
 
   constructor() {
@@ -5,6 +7,6 @@ export default class HomeController {
   }
 
   init() {
-    console.log('init')
+    new VideoPlayer('video', '../assets/medias/minions.mp4')
   }
 }
