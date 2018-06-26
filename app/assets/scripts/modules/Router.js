@@ -22,6 +22,9 @@ export default class Router {
           case 'cover':
             this.controllers.home.initCover()
             break;
+          case 'map':
+            this.controllers.map.init()
+            break;
           case 'paris-seine':
             this.controllers.story.init('paris-seine')
             break;
