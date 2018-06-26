@@ -35,7 +35,6 @@ export default class Router {
 
         switch (route) {
           case 'home':
-            // init animation
             break;
         }
         this.clearOldDom(route)
@@ -72,7 +71,7 @@ export default class Router {
         this.ajax('home')
         break
       default:
-        this.ajax('404')
+        this.ajax('notfound')
         break
     }
   }
