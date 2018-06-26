@@ -7,6 +7,6 @@ export default class HomeController {
   }
 
   init() {
-    new VideoPlayer('video', '../assets/medias/minions.mp4')
+    new VideoPlayer('video', '../assets/medias/minions.mp4', 'Campton NWA')
   }
 }
