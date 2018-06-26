@@ -1,12 +1,15 @@
-import VideoPlayer from '../modules/VideoPlayer'
-
 export default class HomeController {
 
-  constructor() {
-    console.log('ok')
-  }
+  initCover() {
+    const $titleLines = document.querySelectorAll('.cover__title .text')
+    TweenMax.staggerFrom($titleLines, .5, { y: '100%', ease: Power1.easeOut, delay: .5 }, .05)
 
-  init() {
-    new VideoPlayer('video', '../assets/medias/minions.mp4', 'Campton NWA')
+    TweenMax.to('.cover__image img', 1,
+      { scale: 1.02, ease: Power1.easeOut, delay: .5 }
+    )
+
+    TweenMax.from('.cover__button', 1,
+      { opacity: 0, ease: Power1.easeOut, delay: .7 }
+    )
   }
 }

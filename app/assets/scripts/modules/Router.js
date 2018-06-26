@@ -19,8 +19,8 @@ export default class Router {
         document.querySelector('.app').innerHTML += http.responseText
 
         switch (route) {
-          case 'home':
-            this.controllers.home.init()
+          case 'cover':
+            this.controllers.home.initCover()
             break;
         }
         this.clearOldDom(route)
@@ -28,7 +28,6 @@ export default class Router {
         const $links = document.querySelectorAll('.route-link')
         for (const $link of $links) {
           const route = $link.dataset.url
-          console.log($link)
           switch (route) {
             case 'map':
               $link.addEventListener('click', (e) => {
