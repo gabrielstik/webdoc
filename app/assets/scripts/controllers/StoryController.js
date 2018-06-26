@@ -20,16 +20,12 @@ export default class StoryController {
   }
 
   intersectionObservers() {
-    const $title = document.querySelector('.story__title')
+    const $intro = document.querySelector('.story__intro')
     const observer = new IntersectionObserver(() => {
       const $titleLines = document.querySelectorAll('.story__title .text')
       TweenMax.staggerFrom($titleLines, .5, { y: '100%', ease: Power1.easeOut, delay: 1 }, .1)
-
-      TweenMax.from('.story__desc', 1,
-        { x: '-100%', ease: Power1.easeOut, delay: 1.2 }
-      )
     })
-    observer.observe($title)
+    observer.observe($intro)
 
     const $tmInlines = document.querySelectorAll('.tm-inline')
     for (const $tmInline of $tmInlines) {
@@ -51,16 +47,57 @@ export default class StoryController {
     }
 
     const $interractiveYouths = document.querySelector('.paris-seine__interractive-youths')
-    document.addEventListener('mousemove',() => {
+    $interractiveYouths.addEventListener('mousemove',() => {
       TweenMax.to('.youth-lolight', 1,
-        { opacity: '0', ease: Power1.easeOut, delay: 1 }
+        { opacity: '0', ease: Power1.easeOut, delay: 0 }
       )
     })
+    $interractiveYouths.addEventListener('mouseout',() => {
+      TweenMax.to('.youth-lolight', 1,
+        { opacity: '1', ease: Power1.easeOut, delay: 0 }
+      )
+    })
+
+    const $finalValue1 = document.querySelector('.lemondechico .value')
+    const $finalValue2 = document.querySelector('.danslalegende .value')
+    const finalValue1 = parseInt($finalValue1.innerHTML)
+    const finalValue2 = parseInt($finalValue2.innerHTML)
+    
+    const clean = (value) => {
+      value = Math.round(value)
+      const newValue = value.toString().match(/.{3}/g).join(' ');
+      return newValue
+    }
+
+    const $graphsContainer = document.querySelector('.paris-seine__graph')
+    const $graphs = document.querySelectorAll('.paris-seine__graph-bar .filled')
+    for (const $graph of $graphs) {
+      const tmAsideImagesObserver = new IntersectionObserver(() => {
+        let value1 = 0
+        let value2 = 0
+        TweenMax.from($graph, 1,
+          { scaleY: '0', ease: Power1.easeOut, delay: 1 }
+        )
+        const increase = () => {
+          value1 += finalValue1 / 123
+          value2 += finalValue2 / 123
+          $finalValue1.innerHTML = clean(value1)
+          $finalValue2.innerHTML = clean(value2)
+          if (value1 < finalValue1 && value2 < finalValue2) {
+            requestAnimationFrame(increase)
+          }
+        }
+        increase()
+      })
+      tmAsideImagesObserver.observe($graphsContainer)
+    }
   }
 
   videoPlayers() {
     new VideoPlayer('vp-courneuve64', './assets/medias/lacourneuve64.mp4', '1964 – La Courneuve')
     new VideoPlayer('vp-courneuve83', './assets/medias/lacourneuve83.mp4', '1983 – Youths bored in La Courneuve')
+    new VideoPlayer('vp-ntm', './assets/medias/ntm.mp4', 'NTM – Laisse pas traîner ton fils')
+    new VideoPlayer('vp-pnl', './assets/medias/pnl.mp4', 'PNL – Le Monde ou Rien')
   }
 
   scrollAnimation() {

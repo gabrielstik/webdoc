@@ -59,3 +59,60 @@
       top 0
       left 0
       object-fit cover
+
+  &__graph
+    margin-left 10vw
+    display flex
+
+    &-container
+      margin 20px
+
+    &-bar
+      position relative
+      height 60vh
+
+      .filled
+        position absolute
+        bottom 0
+        background $blue
+        transform-origin bottom
+
+      .value
+        width 110px
+        position absolute
+        top -50px
+        left 0
+        font-family 'DIN'
+        font-size 3em
+        color $white
+        text-align center
+        transform translateX(-27.5px)
+
+    &-year
+      margin-top 30px
+      font-family 'DIN'
+      font-size 3em
+      color $white
+
+    &-title
+      margin-top 10px
+      font-family 'Averta'
+      font-size 2.4em
+      color $white
+
+    .lemondechico
+      text-align right
+      
+      .paris-seine__graph-bar .filled
+        height 20%
+        width 55px
+        background $blue
+        right 0
+
+    .danslalegende
+      
+      .paris-seine__graph-bar .filled
+        height 100%
+        width 55px
+        background $blue
+        left 0
