@@ -104,7 +104,7 @@ gulp.gulp.task('browsersync', () => {
 })
 
 gulp.gulp.task('watch', ['app', 'styles', 'scripts', 'fonts', 'images', 'medias', 'apache', 'browsersync'], () => {
-  gulp.gulp.watch(`${config.src}*.html`, ['app']).on('change', gulp.browserSync.reload)
+  gulp.gulp.watch(`${config.src}**/*.html`, ['app']).on('change', gulp.browserSync.reload)
   gulp.gulp.watch(`${config.src}assets/styles/**/*.styl`, ['styles']).on('change', gulp.browserSync.reload)
   gulp.gulp.watch(`${config.src}assets/scripts/**/*.js`, ['scripts']).on('change', gulp.browserSync.reload)
   gulp.gulp.watch(`${config.src}assets/images/**`, ['images']).on('change', gulp.browserSync.reload)
