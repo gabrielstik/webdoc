@@ -76,6 +76,9 @@ export default class Router {
       case 'map':
         this.ajax('map', 'map')
         break
+      case 'dev':
+        this.ajax('dev')
+        break
       default:
         this.ajax('notfound')
         break
