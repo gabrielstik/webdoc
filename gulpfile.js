@@ -87,6 +87,12 @@ gulp.gulp.task('apache', () => {
     .pipe(gulp.gulp.dest(`${config.dist}`))
 })
 
+gulp.gulp.task('medias', () => {
+  return gulp.gulp.src(`${config.src}medias/*.*`)
+    .pipe(gulp.plumber({errorHandler: gulp.notify.onError('Medias error:  <%= error.message %>')}))
+    .pipe(gulp.gulp.dest(`${config.dist}medias`))  
+})
+
 gulp.gulp.task('browsersync', () => {
   gulp.browserSync.init({
     server: {
