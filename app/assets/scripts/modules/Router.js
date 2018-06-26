@@ -71,6 +71,9 @@ export default class Router {
       case '':
         this.ajax('cover', 'intro')
         break
+      case 'home':
+        this.ajax('home')
+        break
       case 'map':
         this.ajax('map', 'map')
         break
