@@ -1,7 +1,26 @@
 export default class GraphCanvas
 {
-    constructor(wrapperClass, imageSrc)
+    constructor(wrapperClass, imageSrc, discoverImageSrc, discoverImageBlendSrc)
     {
+        this.spraySound = new Audio('assets/medias/favelas/spray.mp3')
+
+        this.spraying = false
+
+        document.addEventListener('mousedown', (event) => 
+        {
+            if(event.which == 1)
+            {
+                this.spraying = true
+                this.spraySound.play()
+                document.addEventListener('mouseup', () => 
+                {
+                    this.spraySound.pause()
+                    this.spraySound.currentTime = Math.random() * 3
+                })
+                this.spraySound.addEventListener('ended', () => { this.spraying = false })
+            }
+        })
+
         this.container = document.querySelector('.' + wrapperClass)
         this.container.style.position = 'relative'
 
@@ -10,12 +29,20 @@ export default class GraphCanvas
         this.image.classList.add('graph__image')
         // this.image.style.width = this.container.offsetWidth + 'px'
         // this.image.style.height = this.container.offsetHeight + 'px'
+        this.image.style.opacity = '1'
         this.container.appendChild(this.image)
 
-        this.text = document.createElement('div')
-        this.text.classList.add('graph__text')
-        this.text.innerHTML = 'COUCOU LES COPAINS ÇA VA MOI ÇA VA SUPER BIEN'
-        this.container.appendChild(this.text)
+        this.discover = document.createElement('img')
+        this.discover.setAttribute('src', discoverImageSrc)
+        this.discover.classList.add('graph__discover')
+        // this.discover.innerHTML = 'COUCOU LES COPAINS ÇA VA MOI ÇA VA SUPER BIEN'
+        this.container.appendChild(this.discover)
+
+        this.discoverBlendMode = document.createElement('img')
+        this.discoverBlendMode.setAttribute('src', discoverImageBlendSrc)
+        this.discoverBlendMode.classList.add('graph__discoverBlend')
+        // this.discover.innerHTML = 'COUCOU LES COPAINS ÇA VA MOI ÇA VA SUPER BIEN'
+        this.container.appendChild(this.discoverBlendMode)
 
         this.canvas = document.createElement('canvas')
         this.canvas.classList.add('graphCanvas')
@@ -37,32 +64,28 @@ export default class GraphCanvas
         this.oldWidth = this.container.offsetWidth
         this.oldHeight = this.container.offsetWidth
 
-        window.addEventListener('resize', () => 
-        {
-            this.canvas.width = this.container.offsetWidth
-            this.canvas.height = this.container.offsetHeight
-            this.context.drawImage(this.image, 0, 110 * this.container.offsetWidth / this.oldWidth, this.image.naturalWidth, this.image.naturalHeight, 0, 0, this.canvas.offsetWidth, this.canvas.offsetHeight + 210)
-            this.oldWidth = this.container.offsetWidth
-        })
-
         this.canvas.addEventListener('mousemove', (event) => 
         {
             this.mouse.x = event.clientX
             this.mouse.y = event.clientY
         })
 
-        window.addEventListener('mousedown', () => 
+        window.addEventListener('mousedown', (event) => 
         {
-            let mouseUp = false
-            this.canvas.addEventListener('mousemove', () => 
+            if(event.which == 1)
             {
-                if(!mouseUp) { this.clearCanvas() }
-
-            })
-            window.addEventListener('mouseup', () => 
-            {
-                mouseUp = true
-            })
+                let mouseUp = false
+    
+                this.canvas.addEventListener('mousemove', () => 
+                {
+                    if(!mouseUp && this.spraying) { this.clearCanvas() }
+    
+                })
+                window.addEventListener('mouseup', () => 
+                {
+                    mouseUp = true
+                })
+            }
         })
 
         this.image.addEventListener('load', () => { this.init() })        
@@ -70,8 +93,8 @@ export default class GraphCanvas
     init()
     {
         console.log('init')
+        // this.context.drawImage(this.image, 0, 120, this.image.naturalWidth, this.image.naturalHeight - 200, 0, 0, this.canvas.offsetWidth, this.canvas.offsetHeight )
         this.context.drawImage(this.image, 0, 120, this.image.naturalWidth, this.image.naturalHeight - 200, 0, 0, this.canvas.offsetWidth, this.canvas.offsetHeight )
-
     }
     clearCanvas()
     {
