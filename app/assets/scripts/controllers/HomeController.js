@@ -1,4 +1,5 @@
 import VideoPlayer from '../modules/VideoPlayer'
+import Parallax from './Parallax'
 
 export default class HomeController {
 
@@ -7,6 +8,7 @@ export default class HomeController {
   }
 
   init() {
-    new VideoPlayer('video', '../assets/medias/minions.mp4', 'Campton NWA')
+    new VideoPlayer('video', '../assets/medias/minions.mp4', 'Compton NWA')
+    new Parallax('video', 10, true)
   }
 }
