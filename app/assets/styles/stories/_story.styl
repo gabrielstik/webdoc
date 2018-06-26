@@ -14,3 +14,42 @@
     bottom 0
     right 0
     background grey
+    overflow hidden
+
+    img
+      width 100%
+      height 100%
+      object-fit cover
+      object-position top
+    
+    .hidder
+      width 100%
+      height 100%
+      position fixed
+      top 0
+      left 0
+      background $white
+      transform-origin left
+
+
+  &__intro
+    background-color black
+    display flex
+    align-items center
+
+  &__title
+    width 300px
+    margin-left 15vw
+    font-family 'DIN'
+    font-size 14em
+    color $white
+    text-transform uppercase 
+    letter-spacing -.05em
+    line-height 80%
+
+  &__desc
+    width 40vw
+    font-family 'Averta'
+    font-size 2em
+    color $white
+    line-height 1.8
