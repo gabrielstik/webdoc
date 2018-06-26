@@ -25,6 +25,9 @@ export default class Router {
           case 'cover':
             this.controllers.story.init('paris-seine')
             break;
+          case 'dev':
+            this.controllers.dev.init()
+            break;
         }
         this.clearOldDom(route)
 
