@@ -69,9 +69,6 @@ export default class VideoPlayer
 		
 		wrapper.appendChild(this.videoContainer)
 
-    // Click event to play()
-		document.addEventListener('click', () => { this.video.play() }, { once : true })
-
 		// Play or pause video when click on video
 		this.video.addEventListener('click', () => { this.video.paused ? this.playVideo() : this.pauseVideo() })
 
@@ -113,7 +110,7 @@ export default class VideoPlayer
 				this.gradient.style.opacity = '0'
 				this.videoTitle.style.opacity = '0'
 				this.videoContainer.style.cursor = 'none'
-			}, 1000)
+			}, 5000)
 		})
   }
 
