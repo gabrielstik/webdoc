@@ -88,9 +88,9 @@ gulp.gulp.task('apache', () => {
 })
 
 gulp.gulp.task('medias', () => {
-  return gulp.gulp.src(`${config.src}medias/*.*`)
+  return gulp.gulp.src(`${config.src}assets/medias/*.*`)
     .pipe(gulp.plumber({errorHandler: gulp.notify.onError('Medias error:  <%= error.message %>')}))
-    .pipe(gulp.gulp.dest(`${config.dist}medias`))  
+    .pipe(gulp.gulp.dest(`${config.dist}assets/medias`))  
 })
 
 gulp.gulp.task('browsersync', () => {
@@ -103,10 +103,11 @@ gulp.gulp.task('browsersync', () => {
   })
 })
 
-gulp.gulp.task('watch', ['app', 'styles', 'scripts', 'fonts', 'images', 'apache', 'browsersync'], () => {
+gulp.gulp.task('watch', ['app', 'styles', 'scripts', 'fonts', 'images', 'medias', 'apache', 'browsersync'], () => {
   gulp.gulp.watch(`${config.src}*.html`, ['app']).on('change', gulp.browserSync.reload)
   gulp.gulp.watch(`${config.src}assets/styles/**/*.styl`, ['styles']).on('change', gulp.browserSync.reload)
   gulp.gulp.watch(`${config.src}assets/scripts/**/*.js`, ['scripts']).on('change', gulp.browserSync.reload)
   gulp.gulp.watch(`${config.src}assets/images/**`, ['images']).on('change', gulp.browserSync.reload)
   gulp.gulp.watch(`${config.src}assets/fonts/**`, ['fonts']).on('change', gulp.browserSync.reload)
+  gulp.gulp.watch(`${config.src}assets/medias/**`, ['medias']).on('change', gulp.browserSync.reload)
 })
