@@ -24,9 +24,9 @@ export default class Router {
     }
   }
 
-  ajax(route) {
+  ajax(route, subroute = '') {
     this.isRequesting = true
-    const url = `/views/${route}.html`
+    const url = `/views/${subroute}/${route}.html`
     let success = false
     const http = new XMLHttpRequest()
     http.onreadystatechange = () => {
@@ -69,7 +69,7 @@ export default class Router {
   route(route) {
     switch (route) {
       case '':
-        this.ajax('home')
+        this.ajax('earphones', 'intro')
         break
       default:
         this.ajax('notfound')
