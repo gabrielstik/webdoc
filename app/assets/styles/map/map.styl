@@ -44,22 +44,29 @@
   &__button
     margin-top 2em
 
-svg 
-  width 100vw
-  height 100vh
-  transform-origin top left
-  transform scale(1.5) translateY(-15vh)
+.mapmonde
+  width 1020px
+  height 660px
+  margin-left 50vw
+  transform-origin bottom
+  transform translateX(-50%) scale(1.5)
 
-  .land
-    fill $lightGrey
-    fill-opacity 1
-    stroke $darkGrey
-    stroke-opacity 1
-    stroke-width 0.1
+  svg
+    width 1020px
+    height 660px
+    margin-top 50vh
+    transform translateY(-50%)
 
-  #US
-    transition: fill .1s ease-out
-    cursor pointer
+    .land
+      fill $lightGrey
+      fill-opacity 1
+      stroke $darkGrey
+      stroke-opacity 1
+      stroke-width 0.1
 
-    &:hover
-      fill $blue
+    #US, #FR
+      transition: fill .1s ease-out
+      cursor pointer
+
+      &:hover
+        fill $blue

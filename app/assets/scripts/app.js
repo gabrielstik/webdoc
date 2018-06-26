@@ -6,6 +6,7 @@ import StoryController from './controllers/StoryController'
 
 const controllers = {
   home: new HomeController(),
-  story: new StoryController()
+  story: new StoryController(),
+  map: new MapController(),
 }  
 new Router(controllers)

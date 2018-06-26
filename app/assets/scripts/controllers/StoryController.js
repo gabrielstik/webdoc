@@ -25,6 +25,10 @@ export default class StoryController {
     let currentScroll = 0
     let isScrolling = false
 
+    window.addEventListener('keydown', (e) => {
+      if (e.keyCode == 32) e.preventDefault()
+    })
+
     window.addEventListener('wheel', (e) => {
       e.preventDefault()
       e.stopPropagation()
