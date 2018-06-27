@@ -14,7 +14,9 @@ export default class ScrollBar {
 			const bulletChain = document.createElement('div')
 			
 			bulletPoint.classList.add('scrollBar__bulletPoint')
-			bulletChain.classList.add('scrollBar__bulletChain')
+      bulletChain.classList.add('scrollBar__bulletChain')
+      
+      bulletChain.style.height = '200px'
 
 			if (i == 0) {
 				bulletPoint.classList.add('scrollBar__bulletPoint--first')
