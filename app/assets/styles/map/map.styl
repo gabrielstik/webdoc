@@ -30,6 +30,8 @@
     font-size 2.7em
     text-align center
     text-transform uppercase
+    transition background .2s ease-out
+    cursor pointer
 
     &.selected
       color $black
@@ -43,6 +45,9 @@
 
   &__button
     margin-top 2em
+
+  &__FR, &__US
+    display none
 
 .mapmonde
   width 1020px
@@ -64,7 +69,7 @@
       stroke-opacity 1
       stroke-width 0.1
 
-    #US, #FR
+    #US, #FR, #RU, #BR
       transition: fill .1s ease-out
       cursor pointer
 
