@@ -17,7 +17,7 @@ export default class StoryController {
     const videos = this.videoPlayers(story)
     this.intersectionObservers(videos)
     this.scrollAnimation()
-    this.navigation(videos)
+    // this.navigation(videos)
   }
 
   navigation(videos) {
@@ -155,8 +155,10 @@ export default class StoryController {
         break
       case 'sao-paulo':
         const saopaulofootball = new VideoPlayer('vp-saopaulofootball', './assets/medias/favelas.mp4', 'Young people playing football in favelas - Sao Paulo ')
+        const neymar = new VideoPlayer('vp-neymar', './assets/medias/neymar.mp4', 'Neymar JR - A star from favelas')
         return [
-          saopaulofootball
+          saopaulofootball,
+          neymar
         ]
         break
     }
