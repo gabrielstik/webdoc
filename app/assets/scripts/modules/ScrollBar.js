@@ -1,8 +1,9 @@
 export default class ScrollBar {
-	constructor(windowNumber, containerClass, scrollHeight, bulletPointDiametre) {
+	constructor(windowsTitle, containerClass, scrollHeight, bulletPointDiametre) {
 		this.bulletPointFills = []
 		this.bulletChainFills = []
 		this.bulletPoints = []
+		this.bulletTitles = []
 		this.timeline = new TimelineMax()
 
 		const scrollBarContainer = document.querySelector('.' + containerClass)
@@ -15,18 +16,21 @@ export default class ScrollBar {
 		scrollBarWrapper.classList.add('scrollBar')
 		scrollBarWrapper.style.height = scrollHeight + 'vh'
 
-		const chainHeight = Math.round((80 * window.innerHeight / 100) / (windowNumber - 1) - (bulletPointDiametre / (windowNumber)) - ((bulletPointDiametre / 2) / (windowNumber * 2)))
+		const chainHeight = Math.round((80 * window.innerHeight / 100) / (windowsTitle.length - 1) - (bulletPointDiametre / (windowsTitle.length)) - ((bulletPointDiametre / 2) / (windowsTitle.length * 2)))
 
-		for (let i = 0; i < windowNumber; i++) {
+		for (let i = 0; i < windowsTitle.length; i++) {
 			const bulletPoint = document.createElement('div')
 			const bulletPointFill = document.createElement('div')
 			const bulletChain = document.createElement('div')
 			const bulletChainFill = document.createElement('div')
+			const bulletTitle = document.createElement('div')
+			bulletTitle.innerHTML = windowsTitle[i]
 			
 			bulletPoint.classList.add('scrollBar__bulletPoint')
 			bulletPointFill.classList.add('scrollBar__bulletPointFill')
 			bulletChain.classList.add('scrollBar__bulletChain')
 			bulletChainFill.classList.add('scrollBar__bulletChainFill')
+			bulletTitle.classList.add('scrollBar__bulletTitle')
 
 			bulletChain.style.height = chainHeight + 'px'
 			bulletPoint.style.height = bulletPointDiametre + 'px'
@@ -34,17 +38,19 @@ export default class ScrollBar {
 
 			bulletPoint.appendChild(bulletPointFill)
 			bulletChain.appendChild(bulletChainFill)
+			bulletPoint.appendChild(bulletTitle)
 
 			this.bulletChainFills.push(bulletChainFill)
 			this.bulletPointFills.push(bulletPointFill)
 			this.bulletPoints.push(bulletPoint)
+			this.bulletTitles.push(bulletTitle)
 
 			if (i == 0) {
 				bulletPoint.classList.add('scrollBar__bulletPoint--first')
 				scrollBarWrapper.appendChild(bulletPoint)
 				bulletPoint.appendChild(bulletChain)
 			}
-			else if (i == windowNumber - 1) {
+			else if (i == windowsTitle.length.length - 1) {
 				this.former.appendChild(bulletPoint)
 			}
 			else {
@@ -59,21 +65,47 @@ export default class ScrollBar {
 		}
 		this.updateScroll(0)
 
+		this.once = [true, true]
+
 		for(const [index, bulletPoint] of this.bulletPoints.entries())
 		{
-			this.once = true
+
 			bulletPoint.addEventListener('click', () => 
 			{
-				if(this.once) 
+				if(this.once[0]) 
 				{ 
-					console.log('INDEX ' + index)
 					this.updateScroll(index) 
+					this.getWindowNumber()
 				}
-				this.once = false
+				this.once[0] = false
 
 				window.addEventListener('mouseup', () => 
 				{
-					this.once = true
+					this.once[0] = true
+				})
+			})
+
+		}
+		for(const [index, bulletPoint] of this.bulletPoints.entries())
+		{
+			bulletPoint.addEventListener('mouseover', () => 
+			{
+				if(this.once[1]) 
+				{ 
+					TweenMax.to(this.bulletTitles[index], 0.3, { opacity : 1, x: '30%' }) 
+				}
+
+				this.once[1] = false
+
+				bulletPoint.addEventListener('mouseleave', () => 
+				{
+					TweenMax.to(this.bulletTitles[index], 0.3, { opacity : 0, x: '0%' })
+					this.once[1] = true
+				})
+				bulletPoint.addEventListener('click', () => 
+				{
+					TweenMax.to(this.bulletTitles[index], 0.3, { opacity : 0, x: '0%' })
+					this.once[1] = false
 				})
 			})
 		}
@@ -91,7 +123,6 @@ export default class ScrollBar {
 		}
 		else if(windowIndex < this.bulletPointFills.length && this.currentWindow < windowIndex)
 		{
-			console.log('FORWARD')
 			for(let i = 0; i < windowIndex; i++)
 			{
 				bulletPointFills.push(this.bulletPointFills[i])
@@ -120,10 +151,7 @@ export default class ScrollBar {
 				}
 			}
 		}
-		else
-		{
-			console.error('Unexpected number')
-		}
+
 		if(this.currentWindow < windowIndex)
 		{
 			TweenMax.staggerTo(bulletPointFills, 0.1, { scale: 1 , ease: Power1.easeOut}, 0.1)
@@ -137,5 +165,9 @@ export default class ScrollBar {
 			TweenMax.staggerTo(bulletPoint, 0.1, { borderWidth: '3px' , ease: Power0.easeOut}, 0.1)
 		}
 		this.currentWindow = windowIndex
+	}
+	getWindowNumber()
+	{
+		console.log(this.currentWindow)
 	}
 }
