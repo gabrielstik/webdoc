@@ -164,9 +164,11 @@ export default class StoryController {
         ]
         break
       case 'compton':
-        const comptonwitness = new VideoPlayer('vp-comptonwitness', './assets/medias/.mp4', 'Compton | Witness Greatness | GRAMMYs')
+        const comptonwitness = new VideoPlayer('vp-comptonwitness', './assets/medias/compton_witness.mp4', 'Compton | Witness Greatness | GRAMMYs')
+        const noisey = new VideoPlayer('vp-noisey', './assets/medias/noisey.mp4', 'NOISEY Bompton: Growing up with Kendrick Lamar')
         return [
           comptonwitness,
+          noisey
         ]
         break
     }
