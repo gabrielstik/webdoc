@@ -40,25 +40,31 @@ export default class GraphCanvas
         this.container = document.querySelector('.' + wrapperClass)
         this.container.style.position = 'relative'
 
+        this.wrapper = document.createElement('div')
+        this.wrapper.classList.add('graph__wrapper')
+        this.wrapper.style.overflow = 'hidden'
+        this.wrapper.style.width = '100vw'
+        this.wrapper.style.height = '100vh'
+        this.container.appendChild(this.wrapper)
+
         this.image = document.createElement('img')
         this.image.setAttribute('src', imageSrc)
         this.image.classList.add('graph__image')
-        // this.image.style.width = this.container.offsetWidth + 'px'
-        // this.image.style.height = this.container.offsetHeight + 'px'
+
         this.image.style.opacity = '0.8'
-        this.container.appendChild(this.image)
+        this.wrapper.appendChild(this.image)
 
         this.discover = document.createElement('img')
         this.discover.setAttribute('src', discoverImageSrc)
         this.discover.classList.add('graph__discover')
         // this.discover.innerHTML = 'COUCOU LES COPAINS ÇA VA MOI ÇA VA SUPER BIEN'
-        this.container.appendChild(this.discover)
+        this.wrapper.appendChild(this.discover)
 
         this.discoverBlendMode = document.createElement('img')
         this.discoverBlendMode.setAttribute('src', discoverImageBlendSrc)
         this.discoverBlendMode.classList.add('graph__discoverBlend')
         // this.discover.innerHTML = 'COUCOU LES COPAINS ÇA VA MOI ÇA VA SUPER BIEN'
-        this.container.appendChild(this.discoverBlendMode)
+        this.wrapper.appendChild(this.discoverBlendMode)
 
         this.canvas = document.createElement('canvas')
         this.canvas.classList.add('graphCanvas')
@@ -69,7 +75,7 @@ export default class GraphCanvas
 
         this.context = this.canvas.getContext('2d')
 
-        this.container.appendChild(this.canvas)
+        this.wrapper.appendChild(this.canvas)
 
         this.mouse = 
         {
