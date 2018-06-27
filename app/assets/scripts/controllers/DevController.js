@@ -6,6 +6,6 @@ export default class DevController
     init()
     {
         new GraphCanvas('dev', 'assets/images/favelas/wall.jpeg', 'assets/images/favelas/wark.png', 'assets/images/favelas/warkBlend.png')
-        new Parallax('dev', 2, true)
+        new Parallax('graph__wrapper', 1, true)
     }
 }
