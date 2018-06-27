@@ -4,6 +4,8 @@ import VideoPlayer from '../modules/VideoPlayer';
 export default class StoryController {
 
   init(story) {
+    document.body.style.overflow = 'auto'
+
     TweenMax.to('.story__thumbnail img', .5,
       { scale: 1.02, ease: Power1.easeOut, delay: .5 }
     )
@@ -159,6 +161,12 @@ export default class StoryController {
         return [
           saopaulofootball,
           neymar
+        ]
+        break
+      case 'compton':
+        const comptonwitness = new VideoPlayer('vp-comptonwitness', './assets/medias/.mp4', 'Compton | Witness Greatness | GRAMMYs')
+        return [
+          comptonwitness,
         ]
         break
     }

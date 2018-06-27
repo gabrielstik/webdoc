@@ -36,6 +36,7 @@ gulp.gulp.task('clean', () => {
 
 gulp.gulp.task('default', ['dev'])
 gulp.gulp.task('dev', ['watch'])
+gulp.gulp.task('prod', ['app', 'styles', 'scripts', 'fonts', 'images', 'medias', 'vendor', 'apache'])
 
 gulp.gulp.task('styles', () => {
   return gulp.gulp.src(`${config.src}assets/styles/main.styl`)

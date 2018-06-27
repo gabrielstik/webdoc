@@ -2,15 +2,13 @@ import Parallax from '../modules/Parallax'
 
 export default class HomeController {
 
-  constructor() {
-    document.body.style.overflow = 'hidden'
-  }
-
   passRouter(router) {
     this.router = router
   }
 
   initCover() {
+    document.body.style.overflow = 'hidden'
+    
     const $titleLines = document.querySelectorAll('.cover__title .text')
     TweenMax.staggerFrom($titleLines, .5, { y: '100%', ease: Power1.easeOut, delay: .5 }, .05)
 
