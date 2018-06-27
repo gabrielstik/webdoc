@@ -2,7 +2,12 @@ export default class MapController {
 
   init() {
     const $lands = document.querySelectorAll('.land')
-    TweenMax.staggerFrom($lands, 1, { opacity: '0', ease: Power1.easeOut }, .01)
+    TweenMax.staggerFrom($lands, 1, { opacity: '0', ease: Power1.easeOut, delay: 1 }, .01)
+
+    const $map = document.querySelector('.map')
+    TweenMax.from($map, 1,
+      { y: '100%', ease: Power1.easeOut }
+    )
 
     this.events($lands)
   }
