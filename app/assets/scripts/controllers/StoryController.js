@@ -171,6 +171,14 @@ export default class StoryController {
           noisey
         ]
         break
+      case 'de-rocinha':
+        const drdrugs = new VideoPlayer('vp-drdrugs', './assets/medias/drdrugs.mp4', 'Young people studying in the middle of drugs traffic')
+        const drfunk = new VideoPlayer('vp-drfunk', './assets/medias/drfunk.mp4', 'Funk Proibidao - Rio de Janeiro')
+        return [
+          drdrugs,
+          drfunk
+        ]
+        break
     }
   }
 

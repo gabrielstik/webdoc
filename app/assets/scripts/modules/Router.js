@@ -93,7 +93,7 @@ export default class Router {
       case 'compton':
         this.ajax('compton', 'stories')
         break
-      case 'compton':
+      case 'de-rocinha':
         this.ajax('de-rocinha', 'stories')
         break
       case 'home':
