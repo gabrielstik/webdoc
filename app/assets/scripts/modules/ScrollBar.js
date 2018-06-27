@@ -90,6 +90,7 @@ export default class ScrollBar {
 		{
 			bulletPoint.addEventListener('mouseover', () => 
 			{
+				console.log(bulletPoint)
 				if(this.once[1]) 
 				{ 
 					TweenMax.to(this.bulletTitles[index], 0.3, { opacity : 1, x: '30%' }) 
