@@ -82,10 +82,12 @@ export default class ScrollBar {
 	{
 		const bulletPointFills = [] 
 		const bulletChainFills = [] 
+		const bulletPoint = []
 
 		if(windowIndex == 0 && this.currentWindow == windowIndex)
 		{
 			TweenMax.to(this.bulletPointFills[0], 0.1, { scale: 1 , ease: Power1.easeOut}, 0.1)
+			TweenMax.to(this.bulletPoints[0], 0.1, { borderWidth: '0px', ease: Power1.easeOut}, 0.1)
 		}
 		else if(windowIndex < this.bulletPointFills.length && this.currentWindow < windowIndex)
 		{
@@ -93,11 +95,13 @@ export default class ScrollBar {
 			for(let i = 0; i < windowIndex; i++)
 			{
 				bulletPointFills.push(this.bulletPointFills[i])
+				bulletPoint.push(this.bulletPoints[i])
 				bulletChainFills.push(this.bulletChainFills[i])
 	
 				if(i == windowIndex - 1)
 				{ 
 					bulletPointFills.push(this.bulletPointFills[i + 1])
+					bulletPoint.push(this.bulletPoints[i + 1])
 				}
 			}
 		}
@@ -106,11 +110,13 @@ export default class ScrollBar {
 			for(let i = this.bulletPoints.length - 1; i > windowIndex; i--)
 			{
 				bulletPointFills.push(this.bulletPointFills[i])
+				bulletPoint.push(this.bulletPoints[i])
 				bulletChainFills.push(this.bulletChainFills[i])
 
 				if(i == windowIndex + 1)
 				{ 
 					bulletChainFills.push(this.bulletChainFills[i - 1])
+					bulletPoint.push(this.bulletPoints[i])
 				}
 			}
 		}
@@ -122,11 +128,13 @@ export default class ScrollBar {
 		{
 			TweenMax.staggerTo(bulletPointFills, 0.1, { scale: 1 , ease: Power1.easeOut}, 0.1)
 			TweenMax.staggerTo(bulletChainFills, 0.1, { scale: 1 , ease: Power0.easeOut}, 0.1)
+			TweenMax.staggerTo(bulletPoint, 0.1, { borderWidth: '0px' , ease: Power0.easeOut}, 0.1)
 		}
 		else
 		{
 			TweenMax.staggerTo(bulletPointFills, 0.1, { scale: 0 , ease: Power1.easeOut}, 0.1)
 			TweenMax.staggerTo(bulletChainFills, 0.1, { scale: 0 , ease: Power0.easeOut}, 0.1)
+			TweenMax.staggerTo(bulletPoint, 0.1, { borderWidth: '3px' , ease: Power0.easeOut}, 0.1)
 		}
 		this.currentWindow = windowIndex
 	}
