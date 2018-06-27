@@ -6,6 +6,9 @@ export default class ScrollBar {
 
 		this.former = null
 
+		const chainHeight = scrollBarContainer.offsetHeight / windowNumber
+		console.log(chainHeight)
+
 		const scrollBarWrapper = document.createElement('div')
 		scrollBarWrapper.classList.add('scrollBar')
 
@@ -15,6 +18,8 @@ export default class ScrollBar {
 			
 			bulletPoint.classList.add('scrollBar__bulletPoint')
 			bulletChain.classList.add('scrollBar__bulletChain')
+
+			bulletChain.style.height = chainHeight + 'px'
 
 			if (i == 0) {
 				bulletPoint.classList.add('scrollBar__bulletPoint--first')
