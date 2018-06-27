@@ -7,12 +7,16 @@ export default class StoryController {
   init(story) {
     document.body.style.overflow = 'auto'
 
+    TweenMax.from('.story', .5,
+      { x: '100%', ease: Power1.easeOut, delay: .5 }
+    )
+
     TweenMax.to('.story__thumbnail img', .5,
-      { scale: 1.02, ease: Power1.easeOut, delay: .5 }
+      { scale: 1.02, ease: Power1.easeOut, delay: 1 }
     )
 
     TweenMax.to('.story__thumbnail .hidder', .5,
-      { scaleX: 0, ease: Power1.easeOut, delay: 0 }
+      { scaleX: 0, ease: Power1.easeOut, delay: 1 }
     )
 
     new Parallax('story__thumbnail img', 1, true)
@@ -20,7 +24,7 @@ export default class StoryController {
     const videos = this.videoPlayers(story)
     this.intersectionObservers(videos)
     this.scrollAnimation()
-    // this.navigation(videos)
+    this.navigation(videos)
   }
 
   navigation(videos) {
@@ -145,6 +149,36 @@ export default class StoryController {
       new GraphCanvas('de-rocinha__painting', 'assets/images/favelas/wall.jpeg', 'assets/images/favelas/wark.png', 'assets/images/favelas/warkBlend.png')
       new Parallax('graph__wrapper', 1, true)
     }
+
+    if (document.querySelector('.compton')) {
+      let videoTriggered = false
+
+      const $comptonContainer = document.querySelector('.compton__voice')
+      $comptonContainer.addEventListener('mouseenter', () => {
+        if (!videoTriggered) {
+          videoTriggered = true
+          const $texts = document.querySelectorAll('.compton__voice--text .text-part')
+          for (const $text of $texts) {
+            setTimeout(() => {
+              $text.style.opacity = 1
+            }, 500)
+          }
+
+          const delays = [3.5, 5, 7, 9.5, 12.5, 14]
+      
+          const audio = new Audio()
+          audio.src = './assets/medias/quote.mp3'
+
+          audio.addEventListener('canplay', () => {
+            for (let i = 0; i < $texts.length; i++) {
+              const words = new SplitText($texts[i], { type: 'words' })
+              TweenMax.staggerFrom(words.words, .5, { opacity: '0', ease: Power1.easeOut, delay: delays[i] }, .2)
+            }
+            audio.play()
+          })
+        }
+      })
+    }
   }
 
   videoPlayers(story) {
@@ -191,10 +225,10 @@ export default class StoryController {
   }
 
   scrollAnimation() {
-    const $image = document.querySelector('.story__thumbnail img')
+    // const $image = document.querySelector('.story__thumbnail img')
     const $hidder = document.querySelector('.story__thumbnail .hidder')
     window.addEventListener('scroll', () => {
-      $image.style.transform = `scale(1.02) translateX(${window.scrollY / 5}px)`
+      // $image.style.transform = `scale(1.02) translateX(${window.scrollY / 5}px)`
       $hidder.style.transform = `scaleX(${window.scrollY / 1000})`
     })
   }
