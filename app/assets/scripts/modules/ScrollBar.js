@@ -16,7 +16,7 @@ export default class ScrollBar {
 		scrollBarWrapper.classList.add('scrollBar')
 		scrollBarWrapper.style.height = scrollHeight + 'vh'
 
-		const chainHeight = Math.round((80 * window.innerHeight / 100) / (windowsTitle.length - 1) - (bulletPointDiametre / (windowsTitle.length)) - ((bulletPointDiametre / 2) / (windowsTitle.length * 2)))
+		const chainHeight = Math.round((scrollHeight * window.innerHeight / 100) / (windowsTitle.length - 1) - (bulletPointDiametre / (windowsTitle.length)) - ((bulletPointDiametre / 2) / (windowsTitle.length * 2)))
 
 		for (let i = 0; i < windowsTitle.length; i++) {
 			const bulletPoint = document.createElement('div')
@@ -111,6 +111,7 @@ export default class ScrollBar {
 			})
 		}
 	}
+
 	updateScroll(windowIndex)
 	{
 		const bulletPointFills = [] 
@@ -167,6 +168,7 @@ export default class ScrollBar {
 		}
 		this.currentWindow = windowIndex
 	}
+	
 	getWindowNumber()
 	{
 		console.log(this.currentWindow)
