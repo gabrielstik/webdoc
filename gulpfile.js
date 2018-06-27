@@ -88,7 +88,7 @@ gulp.gulp.task('apache', () => {
 })
 
 gulp.gulp.task('medias', () => {
-  return gulp.gulp.src(`${config.src}assets/medias/*.*`)
+  return gulp.gulp.src(`${config.src}assets/medias/**/*.*`)
     .pipe(gulp.plumber({errorHandler: gulp.notify.onError('Medias error:  <%= error.message %>')}))
     .pipe(gulp.gulp.dest(`${config.dist}assets/medias`))  
 })
