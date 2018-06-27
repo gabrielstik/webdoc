@@ -3,7 +3,7 @@ import VideoPlayer from '../modules/VideoPlayer';
 
 export default class StoryController {
 
-  init() {
+  init(story) {
     TweenMax.to('.story__thumbnail img', .5,
       { scale: 1.02, ease: Power1.easeOut, delay: .5 }
     )
@@ -14,7 +14,7 @@ export default class StoryController {
 
     new Parallax('story__thumbnail img', 1, true)
 
-    const videos = this.videoPlayers()
+    const videos = this.videoPlayers(story)
     this.intersectionObservers(videos)
     this.scrollAnimation()
     this.navigation(videos)
@@ -84,70 +84,76 @@ export default class StoryController {
       tmAsideImagesObserver.observe($tmAsideImage)
     }
 
-    const $interractiveYouths = document.querySelector('.paris-seine__interractive-youths')
-    $interractiveYouths.addEventListener('mousemove',() => {
-      TweenMax.to('.youth-lolight', 1,
-        { opacity: '0', ease: Power1.easeOut, delay: 0 }
-      )
-    })
-    $interractiveYouths.addEventListener('mouseout',() => {
-      TweenMax.to('.youth-lolight', 1,
-        { opacity: '1', ease: Power1.easeOut, delay: 0 }
-      )
-    })
-
-    for (const video of videos) {
-      video.getVideoDOM().addEventListener('mouseenter', () => {
-        video.playVideo()
-      })
-    }
-
-    const $finalValue1 = document.querySelector('.lemondechico .value')
-    const $finalValue2 = document.querySelector('.danslalegende .value')
-    const finalValue1 = parseInt($finalValue1.innerHTML)
-    const finalValue2 = parseInt($finalValue2.innerHTML)
-    
-    const clean = (value) => {
-      value = Math.round(value)
-      const newValue = value.toString().match(/.{3}/g).join(' ');
-      return newValue
-    }
-
-    const $graphsContainer = document.querySelector('.paris-seine__graph')
-    const $graphs = document.querySelectorAll('.paris-seine__graph-bar .filled')
-    for (const $graph of $graphs) {
-      const tmAsideImagesObserver = new IntersectionObserver(() => {
-        let value1 = 0
-        let value2 = 0
-        TweenMax.from($graph, 1,
-          { scaleY: '0', ease: Power1.easeOut, delay: 1 }
+    if (document.querySelector('.paris-seine__interractive-youths')) {
+      const $interractiveYouths = document.querySelector('.paris-seine__interractive-youths')
+      $interractiveYouths.addEventListener('mousemove',() => {
+        TweenMax.to('.youth-lolight', 1,
+          { opacity: '0', ease: Power1.easeOut, delay: 0 }
         )
-        const increase = () => {
-          value1 += finalValue1 / 123
-          value2 += finalValue2 / 123
-          $finalValue1.innerHTML = clean(value1)
-          $finalValue2.innerHTML = clean(value2)
-          if (value1 < finalValue1 && value2 < finalValue2) {
-            requestAnimationFrame(increase)
-          }
-        }
-        increase()
       })
-      tmAsideImagesObserver.observe($graphsContainer)
+      $interractiveYouths.addEventListener('mouseout',() => {
+        TweenMax.to('.youth-lolight', 1,
+          { opacity: '1', ease: Power1.easeOut, delay: 0 }
+        )
+      })
+
+      for (const video of videos) {
+        video.getVideoDOM().addEventListener('mouseenter', () => {
+          video.playVideo()
+        })
+      }
+
+      const $finalValue1 = document.querySelector('.lemondechico .value')
+      const $finalValue2 = document.querySelector('.danslalegende .value')
+      const finalValue1 = parseInt($finalValue1.innerHTML)
+      const finalValue2 = parseInt($finalValue2.innerHTML)
+      
+      const clean = (value) => {
+        value = Math.round(value)
+        const newValue = value.toString().match(/.{3}/g).join(' ');
+        return newValue
+      }
+
+      const $graphsContainer = document.querySelector('.paris-seine__graph')
+      const $graphs = document.querySelectorAll('.paris-seine__graph-bar .filled')
+      for (const $graph of $graphs) {
+        const tmAsideImagesObserver = new IntersectionObserver(() => {
+          let value1 = 0
+          let value2 = 0
+          TweenMax.from($graph, 1,
+            { scaleY: '0', ease: Power1.easeOut, delay: 1 }
+          )
+          const increase = () => {
+            value1 += finalValue1 / 123
+            value2 += finalValue2 / 123
+            $finalValue1.innerHTML = clean(value1)
+            $finalValue2.innerHTML = clean(value2)
+            if (value1 < finalValue1 && value2 < finalValue2) {
+              requestAnimationFrame(increase)
+            }
+          }
+          increase()
+        })
+        tmAsideImagesObserver.observe($graphsContainer)
+      }
     }
   }
 
-  videoPlayers() {
-    const courneuve64 = new VideoPlayer('vp-courneuve64', './assets/medias/lacourneuve64.mp4', '1964 – La Courneuve')
-    const courneuve83 = new VideoPlayer('vp-courneuve83', './assets/medias/lacourneuve83.mp4', '1983 – Youths bored in La Courneuve')
-    const ntm = new VideoPlayer('vp-ntm', './assets/medias/ntm.mp4', 'NTM – Laisse pas traîner ton fils')
-    const pnl = new VideoPlayer('vp-pnl', './assets/medias/pnl.mp4', 'PNL – Le Monde ou Rien')
-    return [
-      courneuve64,
-      courneuve83,
-      ntm,
-      pnl
-    ]
+  videoPlayers(story) {
+    switch (story) {
+      case 'paris-seine':
+        const courneuve64 = new VideoPlayer('vp-courneuve64', './assets/medias/lacourneuve64.mp4', '1964 – La Courneuve')
+        const courneuve83 = new VideoPlayer('vp-courneuve83', './assets/medias/lacourneuve83.mp4', '1983 – Youths bored in La Courneuve')
+        const ntm = new VideoPlayer('vp-ntm', './assets/medias/ntm.mp4', 'NTM – Laisse pas traîner ton fils')
+        const pnl = new VideoPlayer('vp-pnl', './assets/medias/pnl.mp4', 'PNL – Le Monde ou Rien')
+        return [
+          courneuve64,
+          courneuve83,
+          ntm,
+          pnl
+        ]
+        break
+    }
   }
 
   scrollAnimation() {
