@@ -153,6 +153,12 @@ export default class StoryController {
           pnl
         ]
         break
+      case 'sao-paulo':
+        const saopolofootball = new VideoPlayer('vp-saopaulofootball', './assets/medias/favelas.mp4', 'Young people playing football in favelas - Sao Paulo ')
+        return [
+          saopolofootball
+        ]
+        break
     }
   }
 
