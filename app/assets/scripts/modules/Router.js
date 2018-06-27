@@ -28,6 +28,9 @@ export default class Router {
           case 'paris-seine':
             this.controllers.story.init('paris-seine')
             break;
+          case 'dev':
+            this.controllers.dev.init()
+            break;
         }
         this.clearOldDom(route)
 
@@ -80,6 +83,9 @@ export default class Router {
         break
       case 'map':
         this.ajax('map', 'map')
+        break
+      case 'dev':
+        this.ajax('dev')
         break
       default:
         this.ajax('notfound')
