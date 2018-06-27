@@ -1,4 +1,5 @@
-import Parallax from '../modules/Parallax'
+import GraphCanvas from '../modules/GraphCanvas'
+import Parallax from '../modules/Parallax';
 import VideoPlayer from '../modules/VideoPlayer';
 
 export default class StoryController {
@@ -138,6 +139,11 @@ export default class StoryController {
         })
         tmAsideImagesObserver.observe($graphsContainer)
       }
+    }
+
+    if (document.querySelector('.story-rio-streetart')) {
+      new GraphCanvas('de-rocinha__painting', 'assets/images/favelas/wall.jpeg', 'assets/images/favelas/wark.png', 'assets/images/favelas/warkBlend.png')
+      new Parallax('graph__wrapper', 1, true)
     }
   }
 
