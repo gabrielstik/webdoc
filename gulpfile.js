@@ -5,10 +5,7 @@ const gulp = {
   plumber: require ('gulp-plumber'),
   sourcemaps: require ('gulp-sourcemaps'),
   notify: require('gulp-notify'),
-<<<<<<< HEAD
-=======
   uglify: require('gulp-uglify'),
->>>>>>> ScrollBar
   del: require('del'),
   autoprefixer: require ('gulp-autoprefixer'),
   stylus: require('gulp-stylus'),
@@ -19,10 +16,7 @@ const gulp = {
   browserify: require('browserify'),
   babelify: require('babelify'),
   source: require('vinyl-source-stream'),
-<<<<<<< HEAD
-=======
   buffer: require('vinyl-buffer'),
->>>>>>> ScrollBar
   env: require('babel-preset-env'),
   browserSync: require('browser-sync').create(),
   historyApiFallback: require('connect-history-api-fallback')
@@ -67,15 +61,11 @@ gulp.gulp.task('scripts', () => {
   .on('error', gulp.gutil.log)
   .pipe(gulp.source('app.js'))
   .on('error', gulp.gutil.log)
-<<<<<<< HEAD
-  .pipe(gulp.rename('app.js'))
-=======
   .pipe(gulp.buffer())
   .pipe(gulp.rename('app.js'))
   .pipe(gulp.sourcemaps.init({loadMaps: true}))
   .pipe(gulp.uglify())
   .pipe(gulp.sourcemaps.write('./'))
->>>>>>> ScrollBar
   .pipe(gulp.gulp.dest(`${config.dist}assets/js`))
 })
 
