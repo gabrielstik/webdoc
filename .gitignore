@@ -2,3 +2,4 @@ app/assets/medias/**/*.*
 node_modules
 public
 .DS_Store
+app/assets/medias
