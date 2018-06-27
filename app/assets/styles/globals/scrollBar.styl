@@ -1,20 +1,17 @@
-
 .scrollBar
-  height 80vh
-  width 100px
-  position fixed
+	position fixed
 	display flex
+	width 100px
+	top 50%
 
-  background-color red
+	background-color red
 
 	flex-direction column
 	align-items space-between
+	transform translateY(-50%)
 
 
 .scrollBar
-
-	&__bulletPoint--first
-		top 0
 
 	&__bulletPoint
 		width 15px
@@ -26,7 +23,11 @@
 		bottom 0
 		
 		left 50%
-		transform translateX(-50%)
+		transform translateX(-50%) translateY(50%)
+
+	&__bulletPoint--first
+		top 0
+		transform translateX(-50%) translateY(0%)
 
 	&__bulletChain
 		width 8px
@@ -35,7 +36,14 @@
 		background-color green
 		position absolute
 		left 50%
-		top 0
+		top 50%
 
 		transform translateX(-50%)
+
+	&__bulletChainFill
+		width 100%
+		height 100%
+
+		transform scale(0)
+		background-color orange
 
