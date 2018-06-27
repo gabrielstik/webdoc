@@ -84,6 +84,12 @@ export default class StoryController {
       tmAsideImagesObserver.observe($tmAsideImage)
     }
 
+    for (const video of videos) {
+      video.getVideoDOM().addEventListener('mouseenter', () => {
+        video.playVideo()
+      })
+    }
+
     if (document.querySelector('.paris-seine__interractive-youths')) {
       const $interractiveYouths = document.querySelector('.paris-seine__interractive-youths')
       $interractiveYouths.addEventListener('mousemove',() => {
@@ -96,12 +102,6 @@ export default class StoryController {
           { opacity: '1', ease: Power1.easeOut, delay: 0 }
         )
       })
-
-      for (const video of videos) {
-        video.getVideoDOM().addEventListener('mouseenter', () => {
-          video.playVideo()
-        })
-      }
 
       const $finalValue1 = document.querySelector('.lemondechico .value')
       const $finalValue2 = document.querySelector('.danslalegende .value')
@@ -154,9 +154,9 @@ export default class StoryController {
         ]
         break
       case 'sao-paulo':
-        const saopolofootball = new VideoPlayer('vp-saopaulofootball', './assets/medias/favelas.mp4', 'Young people playing football in favelas - Sao Paulo ')
+        const saopaulofootball = new VideoPlayer('vp-saopaulofootball', './assets/medias/favelas.mp4', 'Young people playing football in favelas - Sao Paulo ')
         return [
-          saopolofootball
+          saopaulofootball
         ]
         break
     }
