@@ -51,11 +51,7 @@ export default class GraphCanvas
         this.image.setAttribute('src', imageSrc)
         this.image.classList.add('graph__image')
 
-<<<<<<< HEAD
-        this.image.style.opacity = '0.8'
-=======
         this.image.style.opacity = '0.4'
->>>>>>> ScrollBar
         this.wrapper.appendChild(this.image)
 
         this.discover = document.createElement('img')
