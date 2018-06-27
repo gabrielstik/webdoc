@@ -51,7 +51,7 @@ export default class GraphCanvas
         this.image.setAttribute('src', imageSrc)
         this.image.classList.add('graph__image')
 
-        this.image.style.opacity = '0.8'
+        this.image.style.opacity = '0.4'
         this.wrapper.appendChild(this.image)
 
         this.discover = document.createElement('img')
