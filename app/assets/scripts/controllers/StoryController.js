@@ -17,10 +17,10 @@ export default class StoryController {
     const videos = this.videoPlayers()
     this.intersectionObservers(videos)
     this.scrollAnimation()
-    this.navigation()
+    this.navigation(videos)
   }
 
-  navigation() {
+  navigation(videos) {
     const lethargy = new Lethargy()
     let currentScroll = 0
     let isScrolling = false
@@ -35,18 +35,22 @@ export default class StoryController {
       if (lethargy.check(e) !== false) {
         if (isScrolling == false) {
           if (lethargy.check(e) === -1) {
-            currentScroll += 100
+            currentScroll++
           }
           if (lethargy.check(e) === 1) {
-            currentScroll -= 100
+            currentScroll--
           }
           isScrolling = true
           setTimeout(() => {
             isScrolling = false
           }, 500)
+          
+          for (const video of videos) {
+            video.pauseVideo()
+          }
         }
         TweenMax.to(document.body, .5,
-          { transform: `translateY(-${currentScroll}vh)`, ease: Power1.easeOut }
+          { transform: `translateY(-${currentScroll * 100}vh)`, ease: Power1.easeOut }
         )
         window.scrollY = currentScroll
       }
@@ -92,12 +96,10 @@ export default class StoryController {
       )
     })
 
-    for (let i = 0; i < videos.length; i++) {
-      console.log(videos[i])
-      const videosObserver = new IntersectionObserver(() => {
-        videos[i].playVideo()
+    for (const video of videos) {
+      video.getVideoDOM().addEventListener('mouseenter', () => {
+        video.playVideo()
       })
-      videosObserver.observe(videos[i].getVideoDOM())
     }
 
     const $finalValue1 = document.querySelector('.lemondechico .value')
