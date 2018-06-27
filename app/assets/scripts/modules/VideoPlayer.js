@@ -184,5 +184,9 @@ export default class VideoPlayer
 	resetTimeline()
 	{
 		this.timelineFill.style.transform = `scaleX(0)`
-	}
+  }
+  getVideoDOM()
+  {
+    return this.videoContainer
+  }
 }

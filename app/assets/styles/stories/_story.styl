@@ -37,7 +37,7 @@
     display flex
     align-items center
 
-  &__title
+  &__home-title
     width 300px
     margin-left 15vw
     font-family 'DIN'
@@ -45,11 +45,62 @@
     color $white
     text-transform uppercase 
     letter-spacing -.05em
-    line-height 80%
+    line-height 90%
 
-  &__desc
+  &__home-desc
     width 40vw
     font-family 'Averta'
     font-size 2em
     color $white
     line-height 1.8
+
+  &__media-image
+    position relative
+    display flex
+    align-items center
+
+    &.black
+      background-color $backgroundBlack
+
+  &__desc
+    margin-left 10vw
+
+  &__title
+    font-family 'DIN'
+    font-weight bold
+    font-size 10em
+    color $white
+    text-transform uppercase
+    line-height .9
+
+  &__date
+    font-family 'DIN'
+    font-weight bold
+    font-size 10em
+    color $blue
+  
+  &__text
+    width 33vw
+    margin-top 5em
+    font-family 'Averta'
+    font-size 2em
+    line-height 1.5
+    color $white
+
+    &.grey
+      color $mediumGrey
+
+  &__aside-image
+    width 50vw
+    height 70vh
+    overflow hidden
+
+    &.right
+      position absolute
+      top 15vh
+      right 0
+
+    img
+      height 100%
+      width 100%
+      object-fit cover

@@ -14,13 +14,13 @@ export default class StoryController {
 
     new Parallax('story__thumbnail img', 1, true)
 
-    this.intersectionObservers()
-    this.videoPlayers()
+    const videos = this.videoPlayers()
+    this.intersectionObservers(videos)
     this.scrollAnimation()
-    this.navigation()
+    this.navigation(videos)
   }
 
-  navigation() {
+  navigation(videos) {
     const lethargy = new Lethargy()
     let currentScroll = 0
     let isScrolling = false
@@ -35,25 +35,29 @@ export default class StoryController {
       if (lethargy.check(e) !== false) {
         if (isScrolling == false) {
           if (lethargy.check(e) === -1) {
-            currentScroll += 100
+            currentScroll++
           }
           if (lethargy.check(e) === 1) {
-            currentScroll -= 100
+            currentScroll--
           }
           isScrolling = true
           setTimeout(() => {
             isScrolling = false
-          }, 2000)
+          }, 500)
+          
+          for (const video of videos) {
+            video.pauseVideo()
+          }
         }
         TweenMax.to(document.body, .5,
-          { transform: `translateY(-${currentScroll}vh)`, ease: Power1.easeOut }
+          { transform: `translateY(-${currentScroll * 100}vh)`, ease: Power1.easeOut }
         )
         window.scrollY = currentScroll
       }
     })
   }
 
-  intersectionObservers() {
+  intersectionObservers(videos) {
     const $intro = document.querySelector('.story__intro')
     const observer = new IntersectionObserver(() => {
       const $titleLines = document.querySelectorAll('.story__title .text')
@@ -92,6 +96,12 @@ export default class StoryController {
       )
     })
 
+    for (const video of videos) {
+      video.getVideoDOM().addEventListener('mouseenter', () => {
+        video.playVideo()
+      })
+    }
+
     const $finalValue1 = document.querySelector('.lemondechico .value')
     const $finalValue2 = document.querySelector('.danslalegende .value')
     const finalValue1 = parseInt($finalValue1.innerHTML)
@@ -128,10 +138,16 @@ export default class StoryController {
   }
 
   videoPlayers() {
-    new VideoPlayer('vp-courneuve64', './assets/medias/lacourneuve64.mp4', '1964 – La Courneuve')
-    new VideoPlayer('vp-courneuve83', './assets/medias/lacourneuve83.mp4', '1983 – Youths bored in La Courneuve')
-    new VideoPlayer('vp-ntm', './assets/medias/ntm.mp4', 'NTM – Laisse pas traîner ton fils')
-    new VideoPlayer('vp-pnl', './assets/medias/pnl.mp4', 'PNL – Le Monde ou Rien')
+    const courneuve64 = new VideoPlayer('vp-courneuve64', './assets/medias/lacourneuve64.mp4', '1964 – La Courneuve')
+    const courneuve83 = new VideoPlayer('vp-courneuve83', './assets/medias/lacourneuve83.mp4', '1983 – Youths bored in La Courneuve')
+    const ntm = new VideoPlayer('vp-ntm', './assets/medias/ntm.mp4', 'NTM – Laisse pas traîner ton fils')
+    const pnl = new VideoPlayer('vp-pnl', './assets/medias/pnl.mp4', 'PNL – Le Monde ou Rien')
+    return [
+      courneuve64,
+      courneuve83,
+      ntm,
+      pnl
+    ]
   }
 
   scrollAnimation() {
