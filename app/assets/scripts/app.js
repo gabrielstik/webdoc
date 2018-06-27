@@ -11,4 +11,5 @@ const controllers = {
   map: new MapController(),
   dev: new DevController()
 }  
-new Router(controllers)
+const router = new Router(controllers)
+controllers.home.passRouter(router)
