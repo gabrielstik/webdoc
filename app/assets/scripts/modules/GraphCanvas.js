@@ -3,6 +3,7 @@ export default class GraphCanvas
     constructor(wrapperClass, imageSrc, discoverImageSrc, discoverImageBlendSrc)
     {
         this.spraySound = new Audio('assets/medias/favelas/spray.mp3')
+        this.sprayShake = new Audio('assets/medias/favelas/shake_spray.wav')
 
         this.spraying = false
 
@@ -10,12 +11,27 @@ export default class GraphCanvas
         {
             if(event.which == 1)
             {
+                this.randomDuration = Math.random() * (4000 - 2000) + 2000
+                this.randomPlaying = Math.round(Math.random() * 2)
+
                 this.spraying = true
+
+                this.sprayShake.pause()
                 this.spraySound.play()
+
                 document.addEventListener('mouseup', () => 
                 {
+
                     this.spraySound.pause()
                     this.spraySound.currentTime = Math.random() * 3
+
+                    if(this.randomPlaying == 1) { this.sprayShake.currentTime = Math.random() * 6 }
+                    if(this.randomPlaying == 1) { this.sprayShake.play() }
+
+                    setTimeout(() => {
+                        console.log('pause')
+                        this.sprayShake.pause()
+                    }, this.randomDuration);
                 })
                 this.spraySound.addEventListener('ended', () => { this.spraying = false })
             }
@@ -29,7 +45,7 @@ export default class GraphCanvas
         this.image.classList.add('graph__image')
         // this.image.style.width = this.container.offsetWidth + 'px'
         // this.image.style.height = this.container.offsetHeight + 'px'
-        this.image.style.opacity = '1'
+        this.image.style.opacity = '0.8'
         this.container.appendChild(this.image)
 
         this.discover = document.createElement('img')
@@ -75,6 +91,7 @@ export default class GraphCanvas
             if(event.which == 1)
             {
                 let mouseUp = false
+                if(!mouseUp && this.spraying) { this.clearCanvas() }
     
                 this.canvas.addEventListener('mousemove', () => 
                 {
