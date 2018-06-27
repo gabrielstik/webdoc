@@ -1,0 +1,41 @@
+
+.scrollBar
+  height 80vh
+  width 100px
+  position fixed
+	display flex
+
+  background-color red
+
+	flex-direction column
+	align-items space-between
+
+
+.scrollBar
+
+	&__bulletPoint--first
+		top 0
+
+	&__bulletPoint
+		width 15px
+		height 15px
+
+		border 3px solid $black
+		border-radius 50%
+		position absolute
+		bottom 0
+		
+		left 50%
+		transform translateX(-50%)
+
+	&__bulletChain
+		width 8px
+		height 50px
+
+		background-color green
+		position absolute
+		left 50%
+		top 0
+
+		transform translateX(-50%)
+
