@@ -17,7 +17,11 @@ export default class StoryController {
     const videos = this.videoPlayers(story)
     this.intersectionObservers(videos)
     this.scrollAnimation()
+<<<<<<< HEAD
     // this.navigation(videos)
+=======
+    this.navigation(videos)
+>>>>>>> ScrollBar
   }
 
   navigation(videos) {
@@ -84,12 +88,15 @@ export default class StoryController {
       tmAsideImagesObserver.observe($tmAsideImage)
     }
 
+<<<<<<< HEAD
     for (const video of videos) {
       video.getVideoDOM().addEventListener('mouseenter', () => {
         video.playVideo()
       })
     }
 
+=======
+>>>>>>> ScrollBar
     if (document.querySelector('.paris-seine__interractive-youths')) {
       const $interractiveYouths = document.querySelector('.paris-seine__interractive-youths')
       $interractiveYouths.addEventListener('mousemove',() => {
@@ -103,6 +110,15 @@ export default class StoryController {
         )
       })
 
+<<<<<<< HEAD
+=======
+      for (const video of videos) {
+        video.getVideoDOM().addEventListener('mouseenter', () => {
+          video.playVideo()
+        })
+      }
+
+>>>>>>> ScrollBar
       const $finalValue1 = document.querySelector('.lemondechico .value')
       const $finalValue2 = document.querySelector('.danslalegende .value')
       const finalValue1 = parseInt($finalValue1.innerHTML)
@@ -153,6 +169,7 @@ export default class StoryController {
           pnl
         ]
         break
+<<<<<<< HEAD
       case 'sao-paulo':
         const saopaulofootball = new VideoPlayer('vp-saopaulofootball', './assets/medias/favelas.mp4', 'Young people playing football in favelas - Sao Paulo ')
         const neymar = new VideoPlayer('vp-neymar', './assets/medias/neymar.mp4', 'Neymar JR - A star from favelas')
@@ -161,6 +178,8 @@ export default class StoryController {
           neymar
         ]
         break
+=======
+>>>>>>> ScrollBar
     }
   }
 

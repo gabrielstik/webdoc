@@ -102,6 +102,10 @@ export default class VideoPlayer
 		{
 			this.gradient.style.opacity = '1'
 			this.videoTitle.style.opacity = '1'
+<<<<<<< HEAD
+=======
+			this.timeline.style.height = '14px'
+>>>>>>> ScrollBar
 			this.videoContainer.style.cursor = 'default'
 			
 
@@ -109,6 +113,10 @@ export default class VideoPlayer
 			{
 				this.gradient.style.opacity = '0'
 				this.videoTitle.style.opacity = '0'
+<<<<<<< HEAD
+=======
+				this.timeline.style.height = '4px'
+>>>>>>> ScrollBar
 				this.videoContainer.style.cursor = 'none'
 			}, 5000)
 		})
