@@ -12,10 +12,16 @@ export default class MapController {
       $land.addEventListener('mousedown', () => {
         switch ($land.id) {
           case 'US':
-            this.dispAside('US')
+            this.dispAside('.infos__US')
             break;
           case 'FR':
-            this.dispAside('FR')
+            this.dispAside('.infos__FR')
+            break;
+          case 'RU':
+            this.dispAside('.infos__RU')
+            break;
+          case 'BR':
+            this.dispAside('.infos__BR')
             break;
         }
       })
@@ -24,9 +30,19 @@ export default class MapController {
 
   dispAside($country) {
     const $aside = document.querySelector('.infos')
+    const $map = document.querySelector('.mapmonde')
+    const $infos = document.querySelectorAll('.infos > div')
+    
+    for (const $info of $infos) {
+      $info.style.display = 'none'
+    }
+    document.querySelector($country).style.display = 'block'
 
     TweenMax.to($aside, .5,
       { x: '0', ease: Power1.easeOut },
+    )
+    TweenMax.to($map, .5,
+      { opacity: '.3', ease: Power1.easeOut },
     )
   }
 }
