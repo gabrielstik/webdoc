@@ -44,5 +44,20 @@ export default class MapController {
     TweenMax.to($map, .5,
       { opacity: '.3', ease: Power1.easeOut },
     )
+
+    this.loadThemes(document.querySelector($country))
+  }
+
+  loadThemes($country) {
+    const $buttons = $country.querySelectorAll('.infos__theme')
+    const $link = $country.querySelector('.infos__button')
+    for (const $button of $buttons) {
+      $button.addEventListener('mousedown', () => {
+        for (const $button of $buttons) {
+          $button.classList.remove('selected')
+        }
+        $button.classList.add('selected')
+      })
+    }
   }
 }
