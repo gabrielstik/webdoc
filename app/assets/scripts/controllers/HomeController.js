@@ -3,6 +3,10 @@ import AudioController from '../modules/AudioController'
 
 export default class HomeController {
 
+  constructor() {
+    this.mediaTimeout = null
+  }
+
   passRouter(router) {
     this.router = router
   }
@@ -47,7 +51,7 @@ export default class HomeController {
       music.src = './assets/medias/intro.mp3'
       music.play()
 
-      setTimeout(() => {
+      this.mediaTimeout = setTimeout(() => {
         videoController.fadeOutPause(1000)
         TweenMax.to('.cover__hidder-2', .5,
           { y: '-100%', ease: Power1.easeOut }
@@ -61,6 +65,7 @@ export default class HomeController {
 
     const $skip = document.querySelector('.cover__video--skip')
     $skip.addEventListener('mousedown', () => {
+      clearTimeout(this.mediaTimeout)
       videoController.fadeOutPause(1000)
       TweenMax.to('.cover__hidder-2', .5,
         { y: '-100%', ease: Power1.easeOut }
