@@ -29,7 +29,6 @@ export default class GraphCanvas
                     if(this.randomPlaying == 1) { this.sprayShake.play() }
 
                     setTimeout(() => {
-                        console.log('pause')
                         this.sprayShake.pause()
                     }, this.randomDuration);
                 })
@@ -115,7 +114,6 @@ export default class GraphCanvas
     }
     init()
     {
-        console.log('init')
         // this.context.drawImage(this.image, 0, 120, this.image.naturalWidth, this.image.naturalHeight - 200, 0, 0, this.canvas.offsetWidth, this.canvas.offsetHeight )
         this.context.drawImage(this.image, 0, 120, this.image.naturalWidth, this.image.naturalHeight - 200, 0, 0, this.canvas.offsetWidth, this.canvas.offsetHeight )
     }

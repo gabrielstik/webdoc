@@ -1,11 +1,47 @@
 import GraphCanvas from '../modules/GraphCanvas'
 import Parallax from '../modules/Parallax';
 import VideoPlayer from '../modules/VideoPlayer';
+import ScrollBar from '../modules/ScrollBar';
 
 export default class StoryController {
 
   init(story) {
+    const scrollBar = new ScrollBar([
+      'test',
+      'test',
+      'test',
+      'test',
+      'test',
+      'test',
+      'test',
+      'test',
+      'test',
+      'test',
+      'test',
+      'test',
+    ], 'html', '70', '20')
     document.body.style.overflow = 'auto'
+    const $scrollBar = document.querySelector('.scrollBar')
+    const $bulletPoints = $scrollBar.querySelectorAll('.scrollBar__bulletPoint')
+    this.once = true
+
+    for (const [index, $bulletPoint] of $bulletPoints.entries()) {
+
+      $bulletPoint.addEventListener('mousedown', () => {
+        if(this.once) 
+        {
+          TweenMax.to(document.body, .5,
+            { transform: `translateY(-${index * 100}vh)`, ease: Power1.easeOut }
+          )
+        }
+        this.once = false
+
+        window.addEventListener('mouseup', () => 
+        {
+          this.once = true
+        })
+      })
+    }
 
     TweenMax.from('.story', .5,
       { x: '100%', ease: Power1.easeOut, delay: .5 }
@@ -24,10 +60,10 @@ export default class StoryController {
     const videos = this.videoPlayers(story)
     this.intersectionObservers(videos)
     this.scrollAnimation()
-    this.navigation(videos)
+    this.navigation(videos, scrollBar)
   }
 
-  navigation(videos) {
+  navigation(videos, scrollBar) {
     const lethargy = new Lethargy()
     let currentScroll = 0
     let isScrolling = false
@@ -59,6 +95,7 @@ export default class StoryController {
         TweenMax.to(document.body, .5,
           { transform: `translateY(-${currentScroll * 100}vh)`, ease: Power1.easeOut }
         )
+        scrollBar.updateScroll(currentScroll)
         window.scrollY = currentScroll
       }
     })
@@ -99,7 +136,7 @@ export default class StoryController {
 
     if (document.querySelector('.paris-seine__interractive-youths')) {
       const $interractiveYouths = document.querySelector('.paris-seine__interractive-youths')
-      $interractiveYouths.addEventListener('mousemove',() => {
+      $interractiveYouths.addEventListener('mouseenter',() => {
         TweenMax.to('.youth-lolight', 1,
           { opacity: '0', ease: Power1.easeOut, delay: 0 }
         )
