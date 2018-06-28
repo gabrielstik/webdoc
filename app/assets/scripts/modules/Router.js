@@ -50,6 +50,9 @@ export default class Router {
             case 'miami':
               this.controllers.story.init('miami')
               break;
+            case 'soweto':
+              this.controllers.story.init('soweto')
+              break;
             case 'dev':
               this.controllers.dev.init()
               break;
@@ -121,6 +124,9 @@ export default class Router {
         break
       case 'miami':
         this.ajax('miami', 'stories')
+        break
+      case 'soweto':
+        this.ajax('soweto', 'stories')
         break
       case 'home':
         this.ajax('home')
