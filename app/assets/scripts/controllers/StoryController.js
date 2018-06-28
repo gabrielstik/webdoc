@@ -89,6 +89,51 @@ export default class StoryController {
           'Others suburbs',
         ], 'html', '70', '20')
         break;
+      case 'miami':
+        scrollBar = new ScrollBar([
+          '',
+          'Compton',
+          '1959',
+          'Grammys',
+          'Architecture',
+          'Skatepark',
+          'Snoop\'s quote',
+          'Street Poetry',
+          'Noise Bompton',
+          'Kendrick Lamar',
+          'Others suburbs',
+        ], 'html', '70', '20')
+        break;
+      case 'soweto':
+        scrollBar = new ScrollBar([
+          '',
+          'Compton',
+          '1959',
+          'Grammys',
+          'Architecture',
+          'Skatepark',
+          'Snoop\'s quote',
+          'Street Poetry',
+          'Noise Bompton',
+          'Kendrick Lamar',
+          'Others suburbs',
+        ], 'html', '70', '20')
+        break;
+      case 'kouptchino':
+        scrollBar = new ScrollBar([
+          '',
+          'Compton',
+          '1959',
+          'Grammys',
+          'Architecture',
+          'Skatepark',
+          'Snoop\'s quote',
+          'Street Poetry',
+          'Noise Bompton',
+          'Kendrick Lamar',
+          'Others suburbs',
+        ], 'html', '70', '20')
+        break;
     }
     const $links = document.querySelectorAll('.route-link')
     for (const $link of $links) {
@@ -487,6 +532,26 @@ export default class StoryController {
         return [
           drdrugs,
           grafiti
+        ]
+        break
+      case 'miami':
+        const miami1 = new VideoPlayer('vp-miami1', './assets/medias/miami1.mp4', 'It’s so Miami Wynwood')
+        return [
+          miami1
+        ]
+        break
+      case 'soweto':
+        const soweto1 = new VideoPlayer('vp-soweto1', './assets/medias/soweto1.mp4', 'Magic hats')
+        return [
+          soweto1
+        ]
+        break
+      case 'kouptchino':
+        const kouptchino1 = new VideoPlayer('vp-kouptchino1', './assets/medias/kouptchino1.mp4', 'Magic hats')
+        const kouptchino2 = new VideoPlayer('vp-kouptchino2', './assets/medias/kouptchino2.mp4', 'FACE - БУРГЕР (prod. by PackMan)')
+        return [
+          kouptchino1,
+          kouptchino2
         ]
         break
     }

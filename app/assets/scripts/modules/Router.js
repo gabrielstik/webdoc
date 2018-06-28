@@ -47,6 +47,15 @@ export default class Router {
             case 'de-rocinha-street-art':
               this.controllers.story.init('de-rocinha-street-art')
               break;
+            case 'miami':
+              this.controllers.story.init('miami')
+              break;
+            case 'soweto':
+              this.controllers.story.init('soweto')
+              break;
+            case 'kouptchino':
+              this.controllers.story.init('kouptchino')
+              break;
             case 'dev':
               this.controllers.dev.init()
               break;
@@ -125,6 +134,15 @@ export default class Router {
         break
       case 'de-rocinha-street-art':
         this.ajax('de-rocinha-street-art', 'stories')
+        break
+      case 'miami':
+        this.ajax('miami', 'stories')
+        break
+      case 'soweto':
+        this.ajax('soweto', 'stories')
+        break
+      case 'kouptchino':
+        this.ajax('kouptchino', 'stories')
         break
       case 'home':
         this.ajax('home')

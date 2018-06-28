@@ -29,8 +29,6 @@ export default class MapController {
     const clickSound = new Audio('assets/medias/clicReverb.mp3')
     const hoverSound = new Audio('assets/medias/country_hover.mp3')
 
-    const $countries = document.querySelectorAll('#US, #FR, #RU, #BR')
-
     for(const blueButton of blueButtons)
     {
       blueButton.addEventListener('click', () => 
@@ -43,6 +41,7 @@ export default class MapController {
       })
     }
 
+    const $countries = document.querySelectorAll('#US, #FR, #RU, #BR, #ZA')
     for (const $country of $countries) {
 
       $country.addEventListener('mouseenter', () => 
@@ -94,6 +93,9 @@ export default class MapController {
           break;
         case 'BR':
           this.dispAside('.infos__BR')
+          break;
+        case 'ZA':
+          this.dispAside('.infos__ZA')
           break;
       }
     }

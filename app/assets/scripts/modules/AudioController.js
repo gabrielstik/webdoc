@@ -9,9 +9,9 @@ export default class AudioController
     }
     fadeOutPause(duration)
     {
-        // if(this.once[0]){ this.audio.volume = 1 }
+        if(this.once[0] && this.audio.volume <= 0.25){ this.audio.volume = 0.25 }
 
-        // this.once[0] = false
+        this.once[0] = false
 
         this.audio.volume -= 0.025
 
@@ -27,7 +27,7 @@ export default class AudioController
 
             if(!this.isLoop) this.audio.pause()
             
-            // this.once[0] = true
+            this.once[0] = true
         }
     }
     fadeInPlay(duration)
