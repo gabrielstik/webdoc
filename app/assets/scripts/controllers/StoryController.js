@@ -222,6 +222,7 @@ export default class StoryController {
         console.log('playOne')
         youthOne.volume = youthSpeakVolume
         youthOne.currentTime = 0
+        youthOne.play()
         $youthOne.addEventListener('mouseleave', () => 
         {
           console.log('pauseOne')
@@ -234,6 +235,7 @@ export default class StoryController {
         console.log('playTwo')
         youthTwo.volume = youthSpeakVolume
         youthTwo.currentTime = 0
+        youthTwo.play()
         $youthTwo.addEventListener('mouseleave', () => 
         {
           console.log('pauseTwo')
@@ -246,6 +248,7 @@ export default class StoryController {
         console.log('playThree')
         youthThree.volume = youthSpeakVolume
         youthThree.currentTime = 0
+        youthThree.play()
         $youthThree.addEventListener('mouseleave', () => 
         {
           console.log('pauseThree')
