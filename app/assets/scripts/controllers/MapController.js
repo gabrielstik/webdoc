@@ -13,7 +13,7 @@ export default class MapController {
       { y: '100%', ease: Power1.easeOut }
     )
 
-    const $countries = document.querySelectorAll('#US, #FR, #RU, #BR')
+    const $countries = document.querySelectorAll('#US, #FR, #RU, #BR, #ZA')
     for (const $country of $countries) {
       $country.classList.add('animate')
       $country.addEventListener('mouseenter', () => {
@@ -53,6 +53,9 @@ export default class MapController {
           break;
         case 'BR':
           this.dispAside('.infos__BR')
+          break;
+        case 'ZA':
+          this.dispAside('.infos__ZA')
           break;
       }
     }
