@@ -177,6 +177,10 @@ export default class StoryController {
           TweenMax.to('.story__thumbnail .hidder', .5,
             { scaleX: 1, ease: Power1.easeOut }
           )
+          const $titleLinesIntro = document.querySelectorAll('.story__home-title .text')
+          TweenMax.staggerFrom($titleLinesIntro, .5,
+            { y: '0', ease: Power1.easeOut }, .1
+          )
           break;
       }
     })
