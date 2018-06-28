@@ -3,7 +3,6 @@ export default class MuteWindow
     constructor(containerClass, audiosArray = [], muteIconSrc, unMuteIconSrc)
     {
         this.videos = document.querySelectorAll('.videoPlayer__video')
-        console.log(this.videos)
         this.audios = audiosArray
 
         let muted = false
