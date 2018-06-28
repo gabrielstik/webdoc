@@ -7,35 +7,6 @@ export default class GraphCanvas
 
         this.spraying = false
 
-        document.addEventListener('mousedown', (event) => 
-        {
-            if(event.which == 1)
-            {
-                this.randomDuration = Math.random() * (4000 - 2000) + 2000
-                this.randomPlaying = Math.round(Math.random() * 2)
-
-                this.spraying = true
-
-                this.sprayShake.pause()
-                this.spraySound.play()
-
-                document.addEventListener('mouseup', () => 
-                {
-
-                    this.spraySound.pause()
-                    this.spraySound.currentTime = Math.random() * 3
-
-                    if(this.randomPlaying == 1) { this.sprayShake.currentTime = Math.random() * 6 }
-                    if(this.randomPlaying == 1) { this.sprayShake.play() }
-
-                    setTimeout(() => {
-                        this.sprayShake.pause()
-                    }, this.randomDuration);
-                })
-                this.spraySound.addEventListener('ended', () => { this.spraying = false })
-            }
-        })
-
         this.container = document.querySelector('.' + wrapperClass)
         this.container.style.position = 'relative'
 
@@ -110,7 +81,36 @@ export default class GraphCanvas
             }
         })
 
-        this.image.addEventListener('load', () => { this.init() })        
+        this.image.addEventListener('load', () => { this.init() })     
+        
+        this.wrapper.addEventListener('mousedown', (event) => 
+        {
+            if(event.which == 1)
+            {
+                this.randomDuration = Math.random() * (4000 - 2000) + 2000
+                this.randomPlaying = Math.round(Math.random() * 2)
+
+                this.spraying = true
+
+                this.sprayShake.pause()
+                this.spraySound.play()
+
+                document.addEventListener('mouseup', () => 
+                {
+
+                    this.spraySound.pause()
+                    this.spraySound.currentTime = Math.random() * 3
+
+                    if(this.randomPlaying == 1) { this.sprayShake.currentTime = Math.random() * 6 }
+                    if(this.randomPlaying == 1) { this.sprayShake.play() }
+
+                    setTimeout(() => {
+                        this.sprayShake.pause()
+                    }, this.randomDuration);
+                })
+                this.spraySound.addEventListener('ended', () => { this.spraying = false })
+            }
+        })
     }
     init()
     {

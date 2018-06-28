@@ -45,6 +45,36 @@ export default class StoryController {
           'Others suburbs',
         ], 'html', '70', '20')
         break;
+      case 'de-rocinha-music':
+        scrollBar = new ScrollBar([
+          '',
+          'Compton',
+          '1959',
+          'Grammys',
+          'Architecture',
+          'Skatepark',
+          'Snoop\'s quote',
+          'Street Poetry',
+          'Noise Bompton',
+          'Kendrick Lamar',
+          'Others suburbs',
+        ], 'html', '70', '20')
+        break;
+      case 'de-rocinha-street-art':
+        scrollBar = new ScrollBar([
+          '',
+          'Compton',
+          '1959',
+          'Grammys',
+          'Architecture',
+          'Skatepark',
+          'Snoop\'s quote',
+          'Street Poetry',
+          'Noise Bompton',
+          'Kendrick Lamar',
+          'Others suburbs',
+        ], 'html', '70', '20')
+        break;
     }
     const $links = document.querySelectorAll('.route-link')
     for (const $link of $links) {
