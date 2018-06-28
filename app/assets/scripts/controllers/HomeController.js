@@ -36,11 +36,14 @@ export default class HomeController {
         { y: '-200%', ease: Power1.easeOut, delay: .5 }
       )
       $video.play()
+      TweenMax.to('.cover__intro', 1,
+        { opacity: '0', ease: Power1.easeOut }
+      )
     })
 
     const $skip = document.querySelector('.cover__video--skip')
     $skip.addEventListener('mousedown', () => {
-      $video.currentTime = $video.duration
+      this.router.route('map')
     })
 
     $video.addEventListener('ended', () => {
