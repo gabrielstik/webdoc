@@ -10,6 +10,7 @@ export default class ScrollBar {
 
 		this.former = null
 		this.updateScrollCount = 0
+		this.oldWindow = 0
 		this.currentWindow = 0
 
 		const scrollBarWrapper = document.createElement('div')
@@ -76,6 +77,7 @@ export default class ScrollBar {
 				{ 
 					this.updateScroll(index) 
 					this.getWindowNumber()
+					this.currentWindow = index
 				}
 				this.once[0] = false
 
@@ -118,12 +120,12 @@ export default class ScrollBar {
 		const bulletChainFills = [] 
 		const bulletPoint = []
 
-		if(windowIndex == 0 && this.currentWindow == windowIndex)
+		if(windowIndex == 0 && this.oldWindow == windowIndex)
 		{
 			TweenMax.to(this.bulletPointFills[0], 0.1, { scale: 1 , ease: Power1.easeOut}, 0.1)
 			TweenMax.to(this.bulletPoints[0], 0.1, { borderWidth: '0px', ease: Power1.easeOut}, 0.1)
 		}
-		else if(windowIndex < this.bulletPointFills.length && this.currentWindow < windowIndex)
+		else if(windowIndex < this.bulletPointFills.length && this.oldWindow < windowIndex)
 		{
 			for(let i = 0; i < windowIndex; i++)
 			{
@@ -138,7 +140,7 @@ export default class ScrollBar {
 				}
 			}
 		}
-		else if(windowIndex < this.bulletPointFills.length && this.currentWindow > windowIndex)
+		else if(windowIndex < this.bulletPointFills.length && this.oldWindow > windowIndex)
 		{
 			for(let i = this.bulletPoints.length - 1; i > windowIndex; i--)
 			{
@@ -154,7 +156,7 @@ export default class ScrollBar {
 			}
 		}
 
-		if(this.currentWindow < windowIndex)
+		if(this.oldWindow < windowIndex)
 		{
 			TweenMax.staggerTo(bulletPointFills, 0.1, { scale: 1 , ease: Power1.easeOut}, 0.1)
 			TweenMax.staggerTo(bulletChainFills, 0.1, { scale: 1 , ease: Power0.easeOut}, 0.1)
@@ -166,11 +168,11 @@ export default class ScrollBar {
 			TweenMax.staggerTo(bulletChainFills, 0.1, { scale: 0 , ease: Power0.easeOut}, 0.1)
 			TweenMax.staggerTo(bulletPoint, 0.1, { borderWidth: '3px' , ease: Power0.easeOut}, 0.1)
 		}
-		this.currentWindow = windowIndex
+		this.oldWindow = windowIndex
 	}
 	
 	getWindowNumber()
 	{
-		console.log(this.currentWindow)
+		console.log(this.oldWindow)
 	}
 }

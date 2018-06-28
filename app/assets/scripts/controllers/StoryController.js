@@ -1,6 +1,7 @@
 import GraphCanvas from '../modules/GraphCanvas'
 import Parallax from '../modules/Parallax';
 import VideoPlayer from '../modules/VideoPlayer';
+import MuteWindow from '../modules/MuteWindow';
 
 export default class StoryController {
 
@@ -25,6 +26,8 @@ export default class StoryController {
     this.intersectionObservers(videos)
     this.scrollAnimation()
     this.navigation(videos)
+    
+    new MuteWindow('html')
   }
 
   navigation(videos) {
