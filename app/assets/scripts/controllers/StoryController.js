@@ -219,6 +219,17 @@ export default class StoryController {
       })
     }
 
+    if (document.querySelector('.story__outro')) {
+      console.log('ok')
+      document.querySelector('.story__outro').addEventListener('mouseenter', () => {
+        const $text = document.querySelector('.story__outro--title')
+        $text.style.opacity = '1'
+        TweenMax.from($text, 1,
+          { x: '150%', ease: Power1.easeOut }
+        )
+      })
+    }
+
     if (document.querySelector('.paris-seine__interractive-youths')) {
       
       const $youthOne = document.createElement('div')
