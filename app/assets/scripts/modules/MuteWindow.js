@@ -72,4 +72,15 @@ export default class MuteWindow
             audio.muted = false
         }
     }
+    pauseAll()
+    {
+        for(const video of this.videos)
+        {
+            video.pause()
+        }
+        for(const audio of this.audios)
+        {
+            audio.pause()
+        }
+    }
 }

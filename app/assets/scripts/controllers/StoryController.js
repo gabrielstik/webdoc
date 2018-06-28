@@ -4,6 +4,10 @@ import VideoPlayer from '../modules/VideoPlayer';
 import MuteWindow from '../modules/MuteWindow';
 
 export default class StoryController {
+  constructor()
+  {
+    this.audios = []
+  }
 
   init(story) {
     document.body.style.overflow = 'auto'
@@ -27,7 +31,7 @@ export default class StoryController {
     this.scrollAnimation()
     this.navigation(videos)
 
-    new MuteWindow('html')
+    this.muteWindow = new MuteWindow('html', this.audios)
   }
 
   navigation(videos) {
@@ -58,6 +62,8 @@ export default class StoryController {
           for (const video of videos) {
             video.pauseVideo()
           }
+
+          this.muteWindow.pauseAll()
         }
         TweenMax.to(document.body, .5,
           { transform: `translateY(-${currentScroll * 100}vh)`, ease: Power1.easeOut }
@@ -101,27 +107,33 @@ export default class StoryController {
     }
 
     if (document.querySelector('.paris-seine__interractive-youths')) {
-      const $interractiveYouths = document.querySelector('.paris-seine__interractive-youths')
-      $interractiveYouths.addEventListener('mousemove',() => {
-        TweenMax.to('.youth-lolight', 1,
-          { opacity: '0', ease: Power1.easeOut, delay: 0 }
-        )
-      })
-      $interractiveYouths.addEventListener('mouseout',() => {
-        TweenMax.to('.youth-lolight', 1,
-          { opacity: '1', ease: Power1.easeOut, delay: 0 }
-        )
-      })
-
+      
       const $youthOne = document.createElement('div')
       const $youthTwo = document.createElement('div')
       const $youthThree = document.createElement('div')
+      
+      const youthOne = new Audio('assets/medias/djeuns-1.m4a')
+      const youthTwo = new Audio('assets/medias/djeuns-2.m4a')
+      const youthThree = new Audio('assets/medias/djeuns-3.m4a')
+
+      this.audios.push(youthOne)
+      this.audios.push(youthTwo)
+      this.audios.push(youthThree)
+
       const youthSpeakVolume = 1
-      const youthSpeakBackgroundVolume = 0.2
+      const youthSpeakBackgroundVolume = 0.1
+
+      youthOne.volume = youthSpeakBackgroundVolume
+      youthTwo.volume = youthSpeakBackgroundVolume
+      youthThree.volume = youthSpeakBackgroundVolume
 
       $youthOne.style.position = 'absolute'
       $youthTwo.style.position = 'absolute'
       $youthThree.style.position = 'absolute'
+
+      $youthOne.style.cursor = 'pointer'
+      $youthTwo.style.cursor = 'pointer'
+      $youthThree.style.cursor = 'pointer'
 
       $youthOne.style.width = '10%'
       $youthTwo.style.width = '10%'
@@ -135,9 +147,9 @@ export default class StoryController {
       $youthTwo.style.height = '30%'
       $youthThree.style.height = '30%'
 
-      $youthOne.style.backgroundColor = 'green'
-      $youthTwo.style.backgroundColor = 'blue'
-      $youthThree.style.backgroundColor = 'red'
+      // $youthOne.style.backgroundColor = 'green'
+      // $youthTwo.style.backgroundColor = 'blue'
+      // $youthThree.style.backgroundColor = 'red'
 
       $youthOne.style.opacity = '0.4'
       $youthTwo.style.opacity = '0.4'
@@ -152,14 +164,27 @@ export default class StoryController {
       $youthTwo.style.top = '43%'
       $youthThree.style.top = '43%'
 
+      const $interractiveYouths = document.querySelector('.paris-seine__interractive-youths')
+
       $interractiveYouths.appendChild($youthOne)
       $interractiveYouths.appendChild($youthTwo)
       $interractiveYouths.appendChild($youthThree)
+
+
+      $interractiveYouths.addEventListener('mouseenter',() => {
+        TweenMax.to('.youth-lolight', 1,
+          { opacity: '0', ease: Power1.easeOut, delay: 0 }
+        )
+        youthOne.play()
+        youthTwo.play()
+        youthThree.play()
+      })
 
       $youthOne.addEventListener('mouseenter', () => 
       {
         console.log('playOne')
         youthOne.volume = youthSpeakVolume
+        youthOne.currentTime = 0
         $youthOne.addEventListener('mouseleave', () => 
         {
           console.log('pauseOne')
@@ -171,6 +196,7 @@ export default class StoryController {
       {
         console.log('playTwo')
         youthTwo.volume = youthSpeakVolume
+        youthTwo.currentTime = 0
         $youthTwo.addEventListener('mouseleave', () => 
         {
           console.log('pauseTwo')
@@ -182,6 +208,7 @@ export default class StoryController {
       {
         console.log('playThree')
         youthThree.volume = youthSpeakVolume
+        youthThree.currentTime = 0
         $youthThree.addEventListener('mouseleave', () => 
         {
           console.log('pauseThree')
