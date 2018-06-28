@@ -7,6 +7,7 @@ import MuteWindow from '../modules/MuteWindow';
 export default class StoryController {
   constructor()
   {
+    this.currentScroll = 0
     this.audios = []
   }
 
@@ -65,6 +66,7 @@ export default class StoryController {
           TweenMax.to(document.body, .5,
             { transform: `translateY(-${index * 100}vh)`, ease: Power1.easeOut }
           )
+          this.currentScroll = index
         }
         this.once = false
 
@@ -100,7 +102,6 @@ export default class StoryController {
 
   navigation(videos, scrollBar) {
     const lethargy = new Lethargy()
-    let currentScroll = 0
     let isScrolling = false
 
     window.addEventListener('keydown', (e) => {
@@ -113,10 +114,10 @@ export default class StoryController {
       if (lethargy.check(e) !== false) {
         if (isScrolling == false) {
           if (lethargy.check(e) === -1) {
-            if (currentScroll < document.querySelectorAll('.window').length - 1) currentScroll++
+            if (this.currentScroll < document.querySelectorAll('.window').length - 1) this.currentScroll++
           }
           if (lethargy.check(e) === 1) {
-            if (currentScroll > 0) currentScroll--
+            if (this.currentScroll > 0) this.currentScroll--
           }
           isScrolling = true
           setTimeout(() => {
@@ -130,10 +131,10 @@ export default class StoryController {
           this.muteWindow.pauseAll()
         }
         TweenMax.to(document.body, .5,
-          { transform: `translateY(-${currentScroll * 100}vh)`, ease: Power1.easeOut }
+          { transform: `translateY(-${this.currentScroll * 100}vh)`, ease: Power1.easeOut }
         )
-        scrollBar.updateScroll(currentScroll)
-        window.scrollY = currentScroll
+        scrollBar.updateScroll(this.currentScroll)
+        window.scrollY = this.currentScroll
       }
     })
   }
