@@ -89,6 +89,7 @@ export default class Router {
           $node.parentNode.removeChild($node)
           if (document.querySelector('.cover') || document.querySelector('.home') || document.querySelector('.map')) {
             if (document.querySelector('.scrollBar')) document.querySelector('.scrollBar').parentNode.removeChild(document.querySelector('.scrollBar'))
+            if (document.querySelector('.muteWindowButton')) document.querySelector('.muteWindowButton').parentNode.removeChild(document.querySelector('.muteWindowButton'))
           }
         }, 1000)
       }

@@ -30,8 +30,10 @@ export default class MapController {
     for (const $link of $links) {
       $link.style.display = 'none'
     }
-    const $selectedLinks = document.querySelector('.infos__button.selected')
-    $selectedLinks.style.display = 'inline-block'
+    const $selectedLinks = document.querySelectorAll('.infos__button.selected')
+    for (const $selectedLink of $selectedLinks) {
+      $selectedLink.style.display = 'inline-block'
+    }
 
     
     this.events($lands)

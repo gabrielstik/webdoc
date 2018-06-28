@@ -167,6 +167,23 @@ export default class StoryController {
         scrollBar.updateScroll(this.currentScroll)
         window.scrollY = this.currentScroll
       }
+
+      switch (this.currentScroll) {
+        case 0:
+          TweenMax.to('.story__thumbnail .hidder', .5,
+            { scaleX: 0, ease: Power1.easeOut }
+          )
+          break;
+        case 1:
+          TweenMax.to('.story__thumbnail .hidder', .5,
+            { scaleX: 1, ease: Power1.easeOut }
+          )
+          const $titleLinesIntro = document.querySelectorAll('.story__home-title .text')
+          TweenMax.staggerFrom($titleLinesIntro, .5,
+            { y: '0', ease: Power1.easeOut }, .1
+          )
+          break;
+      }
     })
   }
 
@@ -200,6 +217,17 @@ export default class StoryController {
     for (const video of videos) {
       video.getVideoDOM().addEventListener('mouseenter', () => {
         video.playVideo()
+      })
+    }
+
+    if (document.querySelector('.story__outro')) {
+      console.log('ok')
+      document.querySelector('.story__outro').addEventListener('mouseenter', () => {
+        const $text = document.querySelector('.story__outro--title')
+        $text.style.opacity = '1'
+        TweenMax.from($text, 1,
+          { x: '150%', ease: Power1.easeOut }
+        )
       })
     }
 
