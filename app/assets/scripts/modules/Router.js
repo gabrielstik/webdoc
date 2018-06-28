@@ -34,8 +34,11 @@ export default class Router {
           case 'compton':
             this.controllers.story.init('compton')
             break;
-          case 'de-rocinha':
-            this.controllers.story.init('de-rocinha')
+          case 'de-rocinha-music':
+            this.controllers.story.init('de-rocinha-music')
+            break;
+          case 'de-rocinha-street-art':
+            this.controllers.story.init('de-rocinha-street-art')
             break;
           case 'dev':
             this.controllers.dev.init()
@@ -93,8 +96,11 @@ export default class Router {
       case 'compton':
         this.ajax('compton', 'stories')
         break
-      case 'de-rocinha':
-        this.ajax('de-rocinha', 'stories')
+      case 'de-rocinha-music':
+        this.ajax('de-rocinha-music', 'stories')
+        break
+      case 'de-rocinha-street-art':
+        this.ajax('de-rocinha-street-art', 'stories')
         break
       case 'home':
         this.ajax('home')
