@@ -12,18 +12,17 @@ export default class StoryController {
 
   init(story) {
     const scrollBar = new ScrollBar([
-      'test',
-      'test',
-      'test',
-      'test',
-      'test',
-      'test',
-      'test',
-      'test',
-      'test',
-      'test',
-      'test',
-      'test',
+      '',
+      'Compton',
+      '1959',
+      'Grammys',
+      'Architecture',
+      'Skatepark',
+      'Snoop\'s quote',
+      'Street Poetry',
+      'Noise Bompton',
+      'Kendrick Lamar',
+      'Others suburbs',
     ], 'html', '70', '20')
     document.body.style.overflow = 'auto'
     const $scrollBar = document.querySelector('.scrollBar')

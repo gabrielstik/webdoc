@@ -16,6 +16,7 @@ export default class ScrollBar {
 		const scrollBarWrapper = document.createElement('div')
 		scrollBarWrapper.classList.add('scrollBar')
 		scrollBarWrapper.style.height = scrollHeight + 'vh'
+		scrollBarWrapper.style.opacity = '0'
 
 		const chainHeight = Math.round((scrollHeight * window.innerHeight / 100) / (windowsTitle.length - 1) - (bulletPointDiametre / (windowsTitle.length)) - ((bulletPointDiametre / 2) / (windowsTitle.length * 2)))
 
@@ -75,10 +76,10 @@ export default class ScrollBar {
 			{
 				if(this.once[0]) 
 				{ 
-          this.index = index
+    				this.index = index
 					this.updateScroll(index) 
-          this.getWindowNumber()
-          this.currentWindow = index
+    				this.getWindowNumber()
+					this.currentWindow = index
 				}
 				this.once[0] = false
 
@@ -89,6 +90,12 @@ export default class ScrollBar {
 			})
 
 		}
+
+		setTimeout(() => {
+			TweenMax.to(scrollBarWrapper, 1, { opacity: 1 })
+			TweenMax.staggerFrom(this.bulletPoints, 0.1, { scale: 0 }, 0.04)
+		}, 1000);
+
 		for(const [index, bulletPoint] of this.bulletPoints.entries())
 		{
 			bulletPoint.addEventListener('mouseover', () => 
@@ -120,11 +127,13 @@ export default class ScrollBar {
 		const bulletChainFills = [] 
 		const bulletPoint = []
 
+		// If 0
 		if(windowIndex == 0 && this.oldWindow == windowIndex)
 		{
 			TweenMax.to(this.bulletPointFills[0], 0.1, { scale: 1 , ease: Power1.easeOut}, 0.1)
 			TweenMax.to(this.bulletPoints[0], 0.1, { borderWidth: '0px', ease: Power1.easeOut}, 0.1)
 		}
+		// Else if forwards
 		else if(windowIndex < this.bulletPointFills.length && this.oldWindow < windowIndex)
 		{
 			for(let i = 0; i < windowIndex; i++)
@@ -140,6 +149,7 @@ export default class ScrollBar {
 				}
 			}
 		}
+		// Else if backwards
 		else if(windowIndex < this.bulletPointFills.length && this.oldWindow > windowIndex)
 		{
 			for(let i = this.bulletPoints.length - 1; i > windowIndex; i--)
@@ -158,15 +168,16 @@ export default class ScrollBar {
 
 		if(this.oldWindow < windowIndex)
 		{
-			TweenMax.staggerTo(bulletPointFills, 0.1, { scale: 1 , ease: Power1.easeOut}, 0.1)
-			TweenMax.staggerTo(bulletChainFills, 0.1, { scale: 1 , ease: Power0.easeOut}, 0.1)
-			TweenMax.staggerTo(bulletPoint, 0.1, { borderWidth: '0px' , ease: Power0.easeOut}, 0.1)
+			console.log((windowIndex / this.bulletPoints.length * 0.1))
+			TweenMax.staggerTo(bulletPointFills, 0.1, { scale: 1 , ease: Power1.easeOut}, 0.1 - (windowIndex / this.bulletPoints.length * 0.1))
+			TweenMax.staggerTo(bulletChainFills, 0.1, { scale: 1 , ease: Power0.easeOut}, 0.1 - (windowIndex / this.bulletPoints.length * 0.1))
+			TweenMax.staggerTo(bulletPoint, 0.1, { borderWidth: '0px' , ease: Power0.easeOut}, 0.1 - (windowIndex / this.bulletPoints.length * 0.1))
 		}
 		else
 		{
-			TweenMax.staggerTo(bulletPointFills, 0.1, { scale: 0 , ease: Power1.easeOut}, 0.1)
-			TweenMax.staggerTo(bulletChainFills, 0.1, { scale: 0 , ease: Power0.easeOut}, 0.1)
-			TweenMax.staggerTo(bulletPoint, 0.1, { borderWidth: '3px' , ease: Power0.easeOut}, 0.1)
+			TweenMax.staggerTo(bulletPointFills, 0.1, { scale: 0 , ease: Power1.easeOut}, 0.1 - ((this.bulletPoints.length - windowIndex) / this.bulletPoints.length * 0.1))
+			TweenMax.staggerTo(bulletChainFills, 0.1, { scale: 0 , ease: Power0.easeOut}, 0.1 - ((this.bulletPoints.length - windowIndex) / this.bulletPoints.length * 0.1))
+			TweenMax.staggerTo(bulletPoint, 0.1, { borderWidth: '3px' , ease: Power0.easeOut}, 0.1 - ((this.bulletPoints.length - windowIndex) / this.bulletPoints.length * 0.1))
 		}
 		this.oldWindow = windowIndex
 	}
