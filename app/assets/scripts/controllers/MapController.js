@@ -9,6 +9,19 @@ export default class MapController {
       { y: '100%', ease: Power1.easeOut }
     )
 
+    const $countries = document.querySelectorAll('#US, #FR, #RU, #BR')
+    for (const $country of $countries) {
+      $country.classList.add('animate')
+      $country.addEventListener('mouseenter', () => {
+        $country.classList.remove('animate')
+        $country.classList.add('hover')
+      })
+      $country.addEventListener('mouseout', () => {
+        $country.classList.add('animate')
+        $country.classList.remove('hover')
+      })
+    }
+    
     this.events($lands)
   }
 

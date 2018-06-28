@@ -74,22 +74,23 @@
       stroke-width 0.1
 
     #US, #FR, #RU, #BR
-      transition: fill .1s ease-out
+      transition: fill .5s ease-out
       cursor pointer
-      animation-name pulse
-      animation-duration 1s
-      animation-iteration-count infinite
-      animation-direction alternate
-      animation-delay 4s
+    
+      &.animate
+        animation-name pulse
+        animation-duration 1s
+        animation-iteration-count infinite
+        animation-direction alternate
 
-      @keyframes pulse {
-        0% {
-          fill: $lightGrey;
+        @keyframes pulse {
+          0% {
+            fill: $lightGrey;
+          }
+          100% {
+            fill: #bacdff;
+          }
         }
-        100% {
-          fill: #bacdff;
-        }
-      }
 
-      &:hover
+      &.hover 
         fill $blue
