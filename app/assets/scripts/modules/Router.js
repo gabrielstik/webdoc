@@ -17,7 +17,7 @@ export default class Router {
     http.onreadystatechange = () => {
       if (http.readyState == 4 && http.status == 200) {
         TweenMax.to('.story', .5,
-          { opacity: '1', ease: Power1.easeOut }
+          { opacity: '0', ease: Power1.easeOut }
         )
         setTimeout(() => {
           document.body.style.transform = 'none'
