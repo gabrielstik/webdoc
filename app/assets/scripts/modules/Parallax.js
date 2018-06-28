@@ -1,6 +1,6 @@
 export default class Parallax
 {
-    constructor(elementClass, amplitude, rotation = false)
+    constructor(elementClass, amplitude, rotation = false, scale = 1.1)
     {
         const item = 
         {
@@ -14,6 +14,8 @@ export default class Parallax
             x: 0,
             y: 0,
         }
+        
+        this.scale = scale
 
         let windowWidth = window.innerWidth
         let windowHeight = window.innerHeight
@@ -47,7 +49,7 @@ export default class Parallax
         const roundedOffsetY = Math.round(item.offsetY * 100) / 100
 
         this.rotation ?
-            item.element.style.transform = `scale(1.1) rotateX(${roundedOffsetY * 2}deg) rotateY(${- roundedOffsetX}deg) translateX(${- roundedOffsetX * 6}px) translateY(${- roundedOffsetY * 12}px)`
+            item.element.style.transform = `scale(${this.scale}) rotateX(${roundedOffsetY * 2}deg) rotateY(${- roundedOffsetX}deg) translateX(${- roundedOffsetX * 6}px) translateY(${- roundedOffsetY * 12}px)`
             : item.element.style.transform = `translateX(${- roundedOffsetX * 4}px) translateY(${- roundedOffsetY * 8}px)`
     }
 }

@@ -1,8 +1,21 @@
 import Parallax from "../modules/Parallax";
+import AudioController from "../modules/AudioController";
+import MuteWindow from "../modules/MuteWindow";
 
 export default class MapController {
 
   init() {
+    const audios = []
+    const blueButtons = document.querySelectorAll('.blue-button')
+
+    const backSound = new Audio('assets/medias/page_d_accueil.mp3')
+    audios.push(backSound)
+
+    this.backSoundController = new AudioController(backSound)
+    new MuteWindow('html', audios)
+
+    this.backSoundController.loop(10000)
+
     new Parallax('mapWrapper', 4, true)
 
     const $lands = document.querySelectorAll('.land')
@@ -13,8 +26,36 @@ export default class MapController {
       { y: '100%', ease: Power1.easeOut }
     )
 
+    const clickSound = new Audio('assets/medias/clicReverb.mp3')
+    const hoverSound = new Audio('assets/medias/country_hover.mp3')
+
     const $countries = document.querySelectorAll('#US, #FR, #RU, #BR')
+
+    for(const blueButton of blueButtons)
+    {
+      blueButton.addEventListener('click', () => 
+      {
+        console.log('clickButton')
+        console.log(this.backSoundController)
+        this.backSoundController.removeLoop()
+        this.backSoundController.fadeOutPause(3000)
+        // backSound.pause()
+      })
+    }
+
     for (const $country of $countries) {
+
+      $country.addEventListener('mouseenter', () => 
+      {
+        hoverSound.currentTime = 0.4
+        hoverSound.play()
+      })
+      $country.addEventListener('mousedown', () => 
+      {
+        clickSound.currentTime = 0
+        clickSound.play()
+      })
+
       $country.classList.add('animate')
       $country.addEventListener('mouseenter', () => {
         $country.classList.remove('animate')
@@ -106,7 +147,6 @@ export default class MapController {
 
   loadThemes($country) {
     const $buttons = $country.querySelectorAll('.infos__theme')
-    console.log($buttons)
     const $links = $country.querySelectorAll('.infos__button')
     for (const $button of $buttons) {
       $button.addEventListener('mousedown', () => {

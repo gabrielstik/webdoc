@@ -12,6 +12,15 @@ export default class HomeController {
   }
 
   initCover() {
+    const clickSound = new Audio('assets/medias/clicReverb.mp3')
+    const blueButton = document.querySelector('.blue-button')
+    blueButton.addEventListener('mousedown', () => 
+    {
+      clickSound.currentTime = 0
+      clickSound.play()
+    })
+
+
     document.body.style.overflow = 'hidden'
     const music = new Audio()
     const musicController = new AudioController(music)
@@ -65,6 +74,8 @@ export default class HomeController {
 
     const $skip = document.querySelector('.cover__video--skip')
     $skip.addEventListener('mousedown', () => {
+      clickSound.currentTime = 0
+      clickSound.play()
       clearTimeout(this.mediaTimeout)
       videoController.fadeOutPause(1000)
       TweenMax.to('.cover__hidder-2', .5,

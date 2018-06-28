@@ -53,8 +53,18 @@ export default class Router {
           }
           this.clearOldDom(route)
 
+          const clickSound = new Audio('assets/medias/clicReverb.mp3')
+
           const $links = document.querySelectorAll('.route-link')
+          
           for (const $link of $links) {
+          
+            $link.addEventListener('mousedown', () => 
+            {
+              clickSound.currentTime = 0
+              clickSound.play()
+            })
+
             const route = $link.dataset.url
             $link.addEventListener('click', (e) => {
               e.preventDefault()

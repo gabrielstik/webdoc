@@ -4,11 +4,24 @@ import VideoPlayer from '../modules/VideoPlayer'
 import ScrollBar from '../modules/ScrollBar'
 import MuteWindow from '../modules/MuteWindow'
 import ImageMusic from '../modules/ImageMusic'
+import AudioController from '../modules/AudioController';
 
 export default class StoryController {
   constructor()
   {
     this.currentScroll = 0
+    this.buttons = document.querySelectorAll('.blue-button')
+
+    const clickSound = new Audio('assets/medias/clicReverb.mp3')
+
+    for(const button of this.buttons)
+    {
+      button.addEventListener('click', () => 
+      {
+        clickSound.currentTime = 0
+        clickSound.play()
+      })
+    }
     // this.audios = []
   }
 
@@ -132,6 +145,7 @@ export default class StoryController {
   }
 
   navigation(videos, scrollBar) {
+    const swooshSound = new Audio('assets/medias/swoosh.mp3')
     const lethargy = new Lethargy()
     let isScrolling = false
 
@@ -145,10 +159,19 @@ export default class StoryController {
       if (lethargy.check(e) !== false) {
         if (isScrolling == false) {
           if (lethargy.check(e) === -1) {
-            if (this.currentScroll < document.querySelectorAll('.window').length - 1) this.currentScroll++
+            if (this.currentScroll < document.querySelectorAll('.window').length - 1) 
+            { 
+              console.log('wish')
+              swooshSound.currentTime = 0
+              swooshSound.play()
+              this.currentScroll++ 
+            }
           }
           if (lethargy.check(e) === 1) {
-            if (this.currentScroll > 0) this.currentScroll--
+            if (this.currentScroll > 0)
+            { 
+              this.currentScroll-- 
+            }
           }
           isScrolling = true
           setTimeout(() => {
@@ -220,6 +243,7 @@ export default class StoryController {
       })
     }
 
+
     if (document.querySelector('.story__outro')) {
       console.log('ok')
       document.querySelector('.story__outro').addEventListener('mouseenter', () => {
@@ -239,6 +263,7 @@ export default class StoryController {
       const portSound = new Audio('assets/medias/port_scene.mp3')
       
       new ImageMusic('.paris-seine__port', portSound)
+
       
       const $youthOne = document.createElement('div')
       const $youthTwo = document.createElement('div')
@@ -314,39 +339,33 @@ export default class StoryController {
 
       $youthOne.addEventListener('mouseenter', () => 
       {
-        console.log('playOne')
         youthOne.volume = youthSpeakVolume
         youthOne.currentTime = 0
         youthOne.play()
         $youthOne.addEventListener('mouseleave', () => 
         {
-          console.log('pauseOne')
           youthOne.volume = youthSpeakBackgroundVolume
         })
       })
 
       $youthTwo.addEventListener('mouseenter', () => 
       {
-        console.log('playTwo')
         youthTwo.volume = youthSpeakVolume
         youthTwo.currentTime = 0
         youthTwo.play()
         $youthTwo.addEventListener('mouseleave', () => 
         {
-          console.log('pauseTwo')
           youthTwo.volume = youthSpeakBackgroundVolume
         })
       })
 
       $youthThree.addEventListener('mouseenter', () => 
       {
-        console.log('playThree')
         youthThree.volume = youthSpeakVolume
         youthThree.currentTime = 0
         youthThree.play()
         $youthThree.addEventListener('mouseleave', () => 
         {
-          console.log('pauseThree')
           youthThree.volume = youthSpeakBackgroundVolume
         })
       })
@@ -392,6 +411,10 @@ export default class StoryController {
     }
 
     if (document.querySelector('.compton')) {
+      const backSound = new Audio('assets/medias/fond_street_rap.mp3')
+      const backSoundController = new AudioController(backSound)
+      backSoundController.loop(6000)
+
       let videoTriggered = false
 
       const $comptonContainer = document.querySelector('.compton__voice')
