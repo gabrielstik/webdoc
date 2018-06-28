@@ -1,6 +1,6 @@
 export default class MuteWindow
 {
-    constructor(containerClass, audiosArray = [], muteIconSrc, unMuteIconSrc)
+    constructor(containerClass, audiosArray = [], muteIconSrc, unMuteIconSrc = null)
     {
         this.videos = document.querySelectorAll('.videoPlayer__video')
         this.audios = audiosArray
@@ -16,26 +16,26 @@ export default class MuteWindow
         this.unMuteIcon = document.createElement('img')
 
         this.muteIcon.setAttribute('src', muteIconSrc)
-        this.unMuteIcon.setAttribute('src', unMuteIconSrc)
+        // this.unMuteIcon.setAttribute('src', unMuteIconSrc)
 
         this.muteIcon.style.width = '100%'
-        this.unMuteIcon.style.width = '100%'
+        // this.unMuteIcon.style.width = '100%'
 
-        this.unMuteIcon.style.position = 'absolute'
+        // this.unMuteIcon.style.position = 'absolute'
 
         this.muteButton.appendChild(this.muteIcon)
         this.muteButton.appendChild(this.unMuteIcon)
 
         this.muteButton.style.width = '50px'
         this.muteButton.style.height = '50px'
-        this.muteButton.style.background = 'blue'
         this.muteButton.style.position = "fixed"
         this.muteButton.style.bottom = '20px'
         this.muteButton.style.right = '20px'
         this.muteButton.style.cursor = 'pointer'
         this.muteButton.style.display = 'flex'
         this.muteButton.style.justifyContent = 'center'
-        this.muteButton.style.alignItems = 'center'
+        this.muteButton.style.alignItems = 'baseline'
+        this.muteButton.style.backgroundColor = '#0e18bb'
 
         container.appendChild(this.muteButton)
 
@@ -47,7 +47,8 @@ export default class MuteWindow
     }
     muteAll()
     {
-        TweenMax.to(this.muteButton, 0.3, { rotation : 90 })
+        TweenMax.to(this.muteButton, 0.3, { opacity: 0.4 })
+        TweenMax.from(this.muteButton, 1, { scale: 1.1, ease: Elastic.easeOut })
 
         for(const video of this.videos)
         {
@@ -60,7 +61,8 @@ export default class MuteWindow
     }
     unMuteAll()
     {
-        TweenMax.to(this.muteButton, 0.3, { rotation : -90 })
+        TweenMax.to(this.muteButton, 0.3, { opacity: 1 })
+        TweenMax.from(this.muteButton, 1, { scale: 1.1, ease: Elastic.easeOut })
 
         for(const video of this.videos)
         {
@@ -81,9 +83,5 @@ export default class MuteWindow
         {
             audio.pause()
         }
-    }
-    removeDOM()
-    {
-        this.muteButton.remove()
     }
 }

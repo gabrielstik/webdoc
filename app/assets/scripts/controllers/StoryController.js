@@ -9,7 +9,7 @@ export default class StoryController {
   constructor()
   {
     this.currentScroll = 0
-    this.audios = []
+    // this.audios = []
   }
 
   init(story) {
@@ -128,7 +128,7 @@ export default class StoryController {
 
     this.navigation(videos, scrollBar)
 
-    this.muteWindow = new MuteWindow('html', this.audios)
+    // this.muteWindow = new MuteWindow('html', this.audios)
   }
 
   navigation(videos, scrollBar) {
@@ -159,7 +159,7 @@ export default class StoryController {
             video.pauseVideo()
           }
 
-          this.muteWindow.pauseAll()
+          // this.muteWindow.pauseAll()
         }
         TweenMax.to(document.body, .5,
           { transform: `translateY(-${this.currentScroll * 100}vh)`, ease: Power1.easeOut }
@@ -205,8 +205,10 @@ export default class StoryController {
 
     if (document.querySelector('.paris-seine__interractive-youths')) {
 
-      const portSound = new Audio = ('assets/medias/port_scene.mp3')
-      this.audios.push(portSound)
+      const audios = []
+      new MuteWindow('html', audios, 'assets/images/icons/headphones.svg')
+
+      const portSound = new Audio('assets/medias/port_scene.mp3')
       
       new ImageMusic('.paris-seine__port', portSound)
       
@@ -217,10 +219,11 @@ export default class StoryController {
       const youthOne = new Audio('assets/medias/djeuns-1.m4a')
       const youthTwo = new Audio('assets/medias/djeuns-2.m4a')
       const youthThree = new Audio('assets/medias/djeuns-3.m4a')
-
-      this.audios.push(youthOne)
-      this.audios.push(youthTwo)
-      this.audios.push(youthThree)
+      
+      audios.push(portSound)
+      audios.push(youthOne)
+      audios.push(youthTwo)
+      audios.push(youthThree)
 
       const youthSpeakVolume = 1
       const youthSpeakBackgroundVolume = 0.1
