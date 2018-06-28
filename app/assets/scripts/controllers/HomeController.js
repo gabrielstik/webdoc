@@ -1,4 +1,5 @@
 import Parallax from '../modules/Parallax'
+import AudioController from '../modules/AudioController'
 
 export default class HomeController {
 
@@ -8,6 +9,8 @@ export default class HomeController {
 
   initCover() {
     document.body.style.overflow = 'hidden'
+    const music = new Audio()
+    const musicController = new AudioController(music)
     
     const $titleLines = document.querySelectorAll('.cover__title .text')
     TweenMax.staggerFrom($titleLines, .5, { y: '100%', ease: Power1.easeOut, delay: .5 }, .05)
@@ -29,6 +32,7 @@ export default class HomeController {
     const $discover = document.querySelector('.cover__button')
     const $videoContainer = document.querySelector('.cover__video')
     const $video = $videoContainer.querySelector('.cover__video video')
+    const videoController = new AudioController($video)
     $discover.addEventListener('mousedown',() => {
       TweenMax.to('.cover__hidder', .5,
         { y: '-100%', ease: Power1.easeOut }
@@ -40,18 +44,34 @@ export default class HomeController {
         { y: '-200%', ease: Power1.easeOut, delay: .5 }
       )
       $video.play()
+      music.src = './assets/medias/intro.mp3'
+      music.play()
       TweenMax.to('.cover__intro', 1,
         { opacity: '0', ease: Power1.easeOut }
       )
+
+      setTimeout(() => {
+        videoController.fadeOutPause(1000)
+        TweenMax.to('.cover__hidder-2', .5,
+          { y: '-100%', ease: Power1.easeOut }
+        )
+        setTimeout(() => {
+          musicController.fadeOutPause(3000)
+          this.router.route('map')
+        }, 1000)
+      }, 30000)
     })
 
     const $skip = document.querySelector('.cover__video--skip')
     $skip.addEventListener('mousedown', () => {
-      this.router.route('map')
-    })
-
-    $video.addEventListener('ended', () => {
-      this.router.route('map')
+      videoController.fadeOutPause(1000)
+      TweenMax.to('.cover__hidder-2', .5,
+        { y: '-100%', ease: Power1.easeOut }
+      )
+      setTimeout(() => {
+        musicController.fadeOutPause(3000)
+        this.router.route('map')
+      }, 1000)
     })
   }
 }
