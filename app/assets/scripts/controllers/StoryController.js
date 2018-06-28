@@ -166,6 +166,19 @@ export default class StoryController {
         scrollBar.updateScroll(this.currentScroll)
         window.scrollY = this.currentScroll
       }
+
+      switch (this.currentScroll) {
+        case 0:
+          TweenMax.to('.story__thumbnail .hidder', .5,
+            { scaleX: 0, ease: Power1.easeOut }
+          )
+          break;
+        case 1:
+          TweenMax.to('.story__thumbnail .hidder', .5,
+            { scaleX: 1, ease: Power1.easeOut }
+          )
+          break;
+      }
     })
   }
 
