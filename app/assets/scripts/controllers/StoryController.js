@@ -65,13 +65,10 @@ export default class StoryController {
     const videos = this.videoPlayers(story)
     this.intersectionObservers(videos)
     this.scrollAnimation()
-<<<<<<< HEAD
+
     this.navigation(videos, scrollBar)
-=======
-    this.navigation(videos)
 
     this.muteWindow = new MuteWindow('html', this.audios)
->>>>>>> hoverSpeak
   }
 
   navigation(videos, scrollBar) {
@@ -206,15 +203,11 @@ export default class StoryController {
       $youthThree.style.top = '43%'
 
       const $interractiveYouths = document.querySelector('.paris-seine__interractive-youths')
-<<<<<<< HEAD
-=======
 
       $interractiveYouths.appendChild($youthOne)
       $interractiveYouths.appendChild($youthTwo)
       $interractiveYouths.appendChild($youthThree)
 
-
->>>>>>> hoverSpeak
       $interractiveYouths.addEventListener('mouseenter',() => {
         TweenMax.to('.youth-lolight', 1,
           { opacity: '0', ease: Power1.easeOut, delay: 0 }

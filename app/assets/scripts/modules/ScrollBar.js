@@ -77,13 +77,8 @@ export default class ScrollBar {
 				{ 
           this.index = index
 					this.updateScroll(index) 
-<<<<<<< HEAD
           this.getWindowNumber()
           this.currentWindow = index
-=======
-					this.getWindowNumber()
-					this.currentWindow = index
->>>>>>> hoverSpeak
 				}
 				this.once[0] = false
 
@@ -178,10 +173,6 @@ export default class ScrollBar {
 	
 	getWindowNumber()
 	{
-<<<<<<< HEAD
 		return this.oldWindow
-=======
-		console.log(this.oldWindow)
->>>>>>> hoverSpeak
 	}
 }
