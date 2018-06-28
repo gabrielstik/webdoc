@@ -58,7 +58,7 @@ export default class HomeController {
       )
       $video.play()
       music.src = './assets/medias/intro.mp3'
-      music.play()
+      // music.play()
 
       this.mediaTimeout = setTimeout(() => {
         videoController.fadeOutPause(1000)
@@ -69,7 +69,7 @@ export default class HomeController {
           musicController.fadeOutPause(3000)
           this.router.route('map')
         }, 1000)
-      }, 30000)
+      }, 47000)
     })
 
     const $skip = document.querySelector('.cover__video--skip')

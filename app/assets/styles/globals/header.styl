@@ -1,0 +1,40 @@
+.header
+  width 100vw
+  height 100vh
+  padding-top 20vh
+  position fixed
+  top 0
+  left 0
+  z-index 1000000000000
+  background-color $backgroundBlack
+  display flex
+  justify-content space-evenly
+  text-transform uppercase
+  transform translateY(-100%)
+
+  &__title
+    margin-bottom 40px
+    font-family 'DIN'
+    font-size 7em
+    color $white
+
+  &__theme
+    margin-top 10px
+    display block
+    font-family 'DIN'
+    font-size 4em
+    color $mediumGrey
+    transition color .1s ease-out
+
+    &:hover {
+      color $white
+    }
+
+  &__quit
+    width 30px
+    height 30px
+    position absolute 
+    top 50px
+    right 50px
+    transform rotate(45deg)
+    cursor pointer
