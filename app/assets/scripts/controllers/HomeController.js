@@ -17,7 +17,11 @@ export default class HomeController {
     )
 
     TweenMax.from('.cover__button', 1,
-      { opacity: 0, ease: Power1.easeOut, delay: .7 }
+      { opacity: 0, ease: Power1.easeOut, delay: 2 }
+    )
+
+    TweenMax.from('.cover__text', 1,
+      { opacity: 0, ease: Power1.easeOut, delay: 2 }
     )
 
     new Parallax('cover__image', 1, true)

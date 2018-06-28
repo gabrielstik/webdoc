@@ -86,10 +86,10 @@ export default class StoryController {
       if (lethargy.check(e) !== false) {
         if (isScrolling == false) {
           if (lethargy.check(e) === -1) {
-            currentScroll++
+            if (currentScroll < document.querySelectorAll('.window').length - 1) currentScroll++
           }
           if (lethargy.check(e) === 1) {
-            currentScroll--
+            if (currentScroll > 0) currentScroll--
           }
           isScrolling = true
           setTimeout(() => {
