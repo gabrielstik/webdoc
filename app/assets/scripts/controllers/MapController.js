@@ -26,24 +26,34 @@ export default class MapController {
   }
 
   events($lands) {
-    for (const $land of $lands) {
-      $land.addEventListener('mousedown', () => {
-        switch ($land.id) {
-          case 'US':
-            this.dispAside('.infos__US')
-            break;
-          case 'FR':
-            this.dispAside('.infos__FR')
-            break;
-          case 'RU':
-            this.dispAside('.infos__RU')
-            break;
-          case 'BR':
-            this.dispAside('.infos__BR')
-            break;
-        }
-      })
+    const letDisp = ($land) => {
+      switch ($land.id) {
+        case 'US':
+          this.dispAside('.infos__US')
+          break;
+        case 'FR':
+          this.dispAside('.infos__FR')
+          break;
+        case 'RU':
+          this.dispAside('.infos__RU')
+          break;
+        case 'BR':
+          this.dispAside('.infos__BR')
+          break;
+      }
     }
+    const $map = document.querySelector('.mapmonde svg')
+    $map.addEventListener('mousedown', (e) => {
+      let targetted = false
+      let target = null
+      for (const $land of $lands) {
+        if (e.target == $land) {
+          targetted = true
+          target = $land
+        }
+      }
+      targetted ? letDisp(target) : this.hideAside()
+    })
   }
 
   dispAside($country) {
@@ -57,13 +67,27 @@ export default class MapController {
     document.querySelector($country).style.display = 'block'
 
     TweenMax.to($aside, .5,
-      { x: '0', ease: Power1.easeOut },
+      { right: '0', ease: Power1.easeOut },
     )
     TweenMax.to($map, .5,
       { opacity: '.3', ease: Power1.easeOut },
     )
 
     this.loadThemes(document.querySelector($country))
+  }
+
+  hideAside() {
+    const $aside = document.querySelector('.infos')
+    const $map = document.querySelector('.mapmonde')
+
+    this.isAside = false
+
+    TweenMax.to($aside, .5,
+      { right: '-100%', ease: Power1.easeOut },
+    )
+    TweenMax.to($map, .5,
+      { opacity: '1', ease: Power1.easeOut },
+    )
   }
 
   loadThemes($country) {
