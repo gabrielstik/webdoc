@@ -2,8 +2,13 @@ import GraphCanvas from '../modules/GraphCanvas'
 import Parallax from '../modules/Parallax';
 import VideoPlayer from '../modules/VideoPlayer';
 import ScrollBar from '../modules/ScrollBar';
+import MuteWindow from '../modules/MuteWindow';
 
 export default class StoryController {
+  constructor()
+  {
+    this.audios = []
+  }
 
   init(story) {
     const scrollBar = new ScrollBar([
@@ -60,7 +65,13 @@ export default class StoryController {
     const videos = this.videoPlayers(story)
     this.intersectionObservers(videos)
     this.scrollAnimation()
+<<<<<<< HEAD
     this.navigation(videos, scrollBar)
+=======
+    this.navigation(videos)
+
+    this.muteWindow = new MuteWindow('html', this.audios)
+>>>>>>> hoverSpeak
   }
 
   navigation(videos, scrollBar) {
@@ -91,6 +102,8 @@ export default class StoryController {
           for (const video of videos) {
             video.pauseVideo()
           }
+
+          this.muteWindow.pauseAll()
         }
         TweenMax.to(document.body, .5,
           { transform: `translateY(-${currentScroll * 100}vh)`, ease: Power1.easeOut }
@@ -135,16 +148,116 @@ export default class StoryController {
     }
 
     if (document.querySelector('.paris-seine__interractive-youths')) {
+      
+      const $youthOne = document.createElement('div')
+      const $youthTwo = document.createElement('div')
+      const $youthThree = document.createElement('div')
+      
+      const youthOne = new Audio('assets/medias/djeuns-1.m4a')
+      const youthTwo = new Audio('assets/medias/djeuns-2.m4a')
+      const youthThree = new Audio('assets/medias/djeuns-3.m4a')
+
+      this.audios.push(youthOne)
+      this.audios.push(youthTwo)
+      this.audios.push(youthThree)
+
+      const youthSpeakVolume = 1
+      const youthSpeakBackgroundVolume = 0.1
+
+      youthOne.volume = youthSpeakBackgroundVolume
+      youthTwo.volume = youthSpeakBackgroundVolume
+      youthThree.volume = youthSpeakBackgroundVolume
+
+      $youthOne.style.position = 'absolute'
+      $youthTwo.style.position = 'absolute'
+      $youthThree.style.position = 'absolute'
+
+      $youthOne.style.cursor = 'pointer'
+      $youthTwo.style.cursor = 'pointer'
+      $youthThree.style.cursor = 'pointer'
+
+      $youthOne.style.width = '10%'
+      $youthTwo.style.width = '10%'
+      $youthThree.style.width = '14%'
+
+      $youthOne.style.minWidth = '100px'
+      $youthTwo.style.minWidth = '100px'
+      $youthThree.style.minWidth = '140px'
+
+      $youthOne.style.height = '40%'
+      $youthTwo.style.height = '30%'
+      $youthThree.style.height = '30%'
+
+      // $youthOne.style.backgroundColor = 'green'
+      // $youthTwo.style.backgroundColor = 'blue'
+      // $youthThree.style.backgroundColor = 'red'
+
+      $youthOne.style.opacity = '0.4'
+      $youthTwo.style.opacity = '0.4'
+      $youthThree.style.opacity = '0.4'
+
+      $youthOne.style.left = '40%'
+      $youthTwo.style.left = '45%'
+      $youthThree.style.left = '55%'
+      $youthThree.style.right = '55%'
+
+      $youthOne.style.top = '3%'
+      $youthTwo.style.top = '43%'
+      $youthThree.style.top = '43%'
+
       const $interractiveYouths = document.querySelector('.paris-seine__interractive-youths')
+<<<<<<< HEAD
+=======
+
+      $interractiveYouths.appendChild($youthOne)
+      $interractiveYouths.appendChild($youthTwo)
+      $interractiveYouths.appendChild($youthThree)
+
+
+>>>>>>> hoverSpeak
       $interractiveYouths.addEventListener('mouseenter',() => {
         TweenMax.to('.youth-lolight', 1,
           { opacity: '0', ease: Power1.easeOut, delay: 0 }
         )
+        youthOne.play()
+        youthTwo.play()
+        youthThree.play()
       })
-      $interractiveYouths.addEventListener('mouseout',() => {
-        TweenMax.to('.youth-lolight', 1,
-          { opacity: '1', ease: Power1.easeOut, delay: 0 }
-        )
+
+      $youthOne.addEventListener('mouseenter', () => 
+      {
+        console.log('playOne')
+        youthOne.volume = youthSpeakVolume
+        youthOne.currentTime = 0
+        $youthOne.addEventListener('mouseleave', () => 
+        {
+          console.log('pauseOne')
+          youthOne.volume = youthSpeakBackgroundVolume
+        })
+      })
+
+      $youthTwo.addEventListener('mouseenter', () => 
+      {
+        console.log('playTwo')
+        youthTwo.volume = youthSpeakVolume
+        youthTwo.currentTime = 0
+        $youthTwo.addEventListener('mouseleave', () => 
+        {
+          console.log('pauseTwo')
+          youthTwo.volume = youthSpeakBackgroundVolume
+        })
+      })
+
+      $youthThree.addEventListener('mouseenter', () => 
+      {
+        console.log('playThree')
+        youthThree.volume = youthSpeakVolume
+        youthThree.currentTime = 0
+        $youthThree.addEventListener('mouseleave', () => 
+        {
+          console.log('pauseThree')
+          youthThree.volume = youthSpeakBackgroundVolume
+        })
       })
 
       const $finalValue1 = document.querySelector('.lemondechico .value')
