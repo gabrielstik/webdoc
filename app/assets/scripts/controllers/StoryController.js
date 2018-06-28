@@ -26,7 +26,7 @@ export default class StoryController {
     this.intersectionObservers(videos)
     this.scrollAnimation()
     this.navigation(videos)
-    
+
     new MuteWindow('html')
   }
 
@@ -111,6 +111,82 @@ export default class StoryController {
         TweenMax.to('.youth-lolight', 1,
           { opacity: '1', ease: Power1.easeOut, delay: 0 }
         )
+      })
+
+      const $youthOne = document.createElement('div')
+      const $youthTwo = document.createElement('div')
+      const $youthThree = document.createElement('div')
+      const youthSpeakVolume = 1
+      const youthSpeakBackgroundVolume = 0.2
+
+      $youthOne.style.position = 'absolute'
+      $youthTwo.style.position = 'absolute'
+      $youthThree.style.position = 'absolute'
+
+      $youthOne.style.width = '10%'
+      $youthTwo.style.width = '10%'
+      $youthThree.style.width = '14%'
+
+      $youthOne.style.minWidth = '100px'
+      $youthTwo.style.minWidth = '100px'
+      $youthThree.style.minWidth = '140px'
+
+      $youthOne.style.height = '40%'
+      $youthTwo.style.height = '30%'
+      $youthThree.style.height = '30%'
+
+      $youthOne.style.backgroundColor = 'green'
+      $youthTwo.style.backgroundColor = 'blue'
+      $youthThree.style.backgroundColor = 'red'
+
+      $youthOne.style.opacity = '0.4'
+      $youthTwo.style.opacity = '0.4'
+      $youthThree.style.opacity = '0.4'
+
+      $youthOne.style.left = '40%'
+      $youthTwo.style.left = '45%'
+      $youthThree.style.left = '55%'
+      $youthThree.style.right = '55%'
+
+      $youthOne.style.top = '3%'
+      $youthTwo.style.top = '43%'
+      $youthThree.style.top = '43%'
+
+      $interractiveYouths.appendChild($youthOne)
+      $interractiveYouths.appendChild($youthTwo)
+      $interractiveYouths.appendChild($youthThree)
+
+      $youthOne.addEventListener('mouseenter', () => 
+      {
+        console.log('playOne')
+        youthOne.volume = youthSpeakVolume
+        $youthOne.addEventListener('mouseleave', () => 
+        {
+          console.log('pauseOne')
+          youthOne.volume = youthSpeakBackgroundVolume
+        })
+      })
+
+      $youthTwo.addEventListener('mouseenter', () => 
+      {
+        console.log('playTwo')
+        youthTwo.volume = youthSpeakVolume
+        $youthTwo.addEventListener('mouseleave', () => 
+        {
+          console.log('pauseTwo')
+          youthTwo.volume = youthSpeakBackgroundVolume
+        })
+      })
+
+      $youthThree.addEventListener('mouseenter', () => 
+      {
+        console.log('playThree')
+        youthThree.volume = youthSpeakVolume
+        $youthThree.addEventListener('mouseleave', () => 
+        {
+          console.log('pauseThree')
+          youthThree.volume = youthSpeakBackgroundVolume
+        })
       })
 
       const $finalValue1 = document.querySelector('.lemondechico .value')
