@@ -22,11 +22,63 @@ export default class StoryController {
         clickSound.play()
       })
     }
+
+    this.backSound = 
+    {
+      music: new AudioController(new Audio('assets/medias/fond_street_rap.mp3'), 0.2),
+      art: new AudioController(new Audio('assets/medias/street_art_fond.mp3'), 0.2),
+      sport: new AudioController(new Audio('assets/medias/sport_fond.mp3'), 0.2),
+    }
     // this.audios = []
   }
 
   init(story) {
     let scrollBar = null
+
+    if(document.querySelector('.music'))
+    {
+      this.backSound.art.pauseSound()
+      this.backSound.sport.pauseSound()
+      this.backSound.music.pauseSound()
+
+      const audios = []
+
+      audios.push(this.backSound.music)
+
+      this.backSound.music.loop(6000)
+
+      new MuteWindow('html', audios, 'assets/images/icons/headphones.svg')
+    }
+
+    if(document.querySelector('.art'))
+    {
+      this.backSound.music.pauseSound()
+      this.backSound.art.pauseSound()
+      this.backSound.sport.pauseSound()
+
+      const audios = []
+
+      audios.push(this.backSound.art)
+
+      this.backSound.art.loop(6000)
+
+      new MuteWindow('html', audios, 'assets/images/icons/headphones.svg')
+    }
+
+    if(document.querySelector('.sport'))
+    {
+      this.backSound.art.pauseSound()
+      this.backSound.sport.pauseSound()
+      this.backSound.music.pauseSound()
+      const audios = []
+
+      audios.push(this.backSound.sport)
+
+      this.backSound.sport.loop(6000)
+
+      new MuteWindow('html', audios, 'assets/images/icons/headphones.svg')
+    }
+    
     switch (story) {
       case 'paris-seine':
         scrollBar = new ScrollBar([
@@ -120,6 +172,21 @@ export default class StoryController {
         ], 'html', '70', '20')
         break;
       case 'kouptchino':
+        scrollBar = new ScrollBar([
+          '',
+          'Compton',
+          '1959',
+          'Grammys',
+          'Architecture',
+          'Skatepark',
+          'Snoop\'s quote',
+          'Street Poetry',
+          'Noise Bompton',
+          'Kendrick Lamar',
+          'Others suburbs',
+        ], 'html', '70', '20')
+        break;
+      case 'sao-paulo':
         scrollBar = new ScrollBar([
           '',
           'Compton',
@@ -462,13 +529,6 @@ export default class StoryController {
     }
 
     if (document.querySelector('.compton')) {
-      const audios = []
-
-      const backSound = new Audio('assets/medias/fond_street_rap.mp3')
-      audios.push(backSound)
-
-      const backSoundController = new AudioController(backSound)
-      backSoundController.loop(6000)
 
       let videoTriggered = false
 
@@ -498,8 +558,6 @@ export default class StoryController {
           })
         }
       })
-
-      new MuteWindow('html', audios, 'assets/images/icons/headphones.svg')
     }
   }
 
