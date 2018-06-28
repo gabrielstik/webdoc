@@ -190,7 +190,6 @@ export default class StoryController {
   }
 
   navigation(videos, scrollBar) {
-    const swooshSound = new Audio('assets/medias/swoosh.mp3')
     const lethargy = new Lethargy()
     let isScrolling = false
 
@@ -206,9 +205,6 @@ export default class StoryController {
           if (lethargy.check(e) === -1) {
             if (this.currentScroll < document.querySelectorAll('.window').length - 1) 
             { 
-              console.log('wish')
-              swooshSound.currentTime = 0
-              swooshSound.play()
               this.currentScroll++ 
             }
           }
@@ -451,12 +447,26 @@ export default class StoryController {
     }
 
     if (document.querySelector('.story-rio-streetart')) {
+      const audios = []
+
+      const backSound = new Audio('assets/medias/street_art_fond.mp3')
+      audios.push(backSound)
+      backSound.volume = 0.1
+      const backSoundController = new AudioController(backSound, 0.2)
+      backSoundController.loop(6000)
+
       new GraphCanvas('de-rocinha__painting', 'assets/images/favelas/wall.jpeg', 'assets/images/favelas/wark.png', 'assets/images/favelas/warkBlend.png')
       new Parallax('graph__wrapper', 1, true)
+      new MuteWindow('html', audios, 'assets/images/icons/headphones.svg')
+
     }
 
     if (document.querySelector('.compton')) {
+      const audios = []
+
       const backSound = new Audio('assets/medias/fond_street_rap.mp3')
+      audios.push(backSound)
+
       const backSoundController = new AudioController(backSound)
       backSoundController.loop(6000)
 
@@ -477,6 +487,7 @@ export default class StoryController {
       
           const audio = new Audio()
           audio.src = './assets/medias/quote.mp3'
+          audios.push(audio)
 
           audio.addEventListener('canplay', () => {
             for (let i = 0; i < $texts.length; i++) {
@@ -487,6 +498,8 @@ export default class StoryController {
           })
         }
       })
+
+      new MuteWindow('html', audios, 'assets/images/icons/headphones.svg')
     }
   }
 

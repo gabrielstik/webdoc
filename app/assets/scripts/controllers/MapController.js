@@ -12,7 +12,7 @@ export default class MapController {
     audios.push(backSound)
 
     this.backSoundController = new AudioController(backSound)
-    new MuteWindow('html', audios)
+    new MuteWindow('html', audios, 'assets/images/icons/headphones.svg')
 
     this.backSoundController.loop(10000)
 

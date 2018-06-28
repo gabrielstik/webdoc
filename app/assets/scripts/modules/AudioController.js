@@ -1,8 +1,9 @@
 export default class AudioController
 {
-    constructor(audio)
+    constructor(audio, volume = 1)
     {
         this.audio = audio
+        this.volume = volume
         this.once = [true, true, true]
         this.stopLoop = false
         this.isLoop = false
@@ -42,7 +43,7 @@ export default class AudioController
 
         this.audio.volume += 0.025
 
-        if(this.audio.volume < 0.975)
+        if(this.audio.volume < this.volume - 0.025)
         {
             setTimeout(() => {
                 this.fadeInPlay(duration)
@@ -50,7 +51,7 @@ export default class AudioController
         }
         else
         {
-            this.audio.volume = 1
+            this.audio.volume = this.volume
             this.once[1] = true
         }
     }
