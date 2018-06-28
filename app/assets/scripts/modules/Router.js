@@ -16,45 +16,53 @@ export default class Router {
     const http = new XMLHttpRequest()
     http.onreadystatechange = () => {
       if (http.readyState == 4 && http.status == 200) {
-        document.querySelector('.app').innerHTML += http.responseText
+        TweenMax.to('.story', .5,
+          { opacity: '0', ease: Power1.easeOut }
+        )
+        setTimeout(() => {
+          document.body.style.transform = 'none'
+        }, 500)
+        setTimeout(() => {
+          document.querySelector('.app').innerHTML += http.responseText
 
-        switch (route) {
-          case 'cover':
-            this.controllers.home.initCover()
-            break;
-          case 'map':
-            this.controllers.map.init()
-            break;
-          case 'paris-seine':
-            this.controllers.story.init('paris-seine')
-            break;
-          case 'sao-paulo':
-            this.controllers.story.init('sao-paulo')
-            break;
-          case 'compton':
-            this.controllers.story.init('compton')
-            break;
-          case 'de-rocinha-music':
-            this.controllers.story.init('de-rocinha-music')
-            break;
-          case 'de-rocinha-street-art':
-            this.controllers.story.init('de-rocinha-street-art')
-            break;
-          case 'dev':
-            this.controllers.dev.init()
-            break;
-        }
-        this.clearOldDom(route)
+          switch (route) {
+            case 'cover':
+              this.controllers.home.initCover()
+              break;
+            case 'map':
+              this.controllers.map.init()
+              break;
+            case 'paris-seine':
+              this.controllers.story.init('paris-seine')
+              break;
+            case 'sao-paulo':
+              this.controllers.story.init('sao-paulo')
+              break;
+            case 'compton':
+              this.controllers.story.init('compton')
+              break;
+            case 'de-rocinha-music':
+              this.controllers.story.init('de-rocinha-music')
+              break;
+            case 'de-rocinha-street-art':
+              this.controllers.story.init('de-rocinha-street-art')
+              break;
+            case 'dev':
+              this.controllers.dev.init()
+              break;
+          }
+          this.clearOldDom(route)
 
-        const $links = document.querySelectorAll('.route-link')
-        for (const $link of $links) {
-          const route = $link.dataset.url
-          $link.addEventListener('click', (e) => {
-            e.preventDefault()
-            this.route(route)
-            this.pushRoute(route)
-          })
-        }
+          const $links = document.querySelectorAll('.route-link')
+          for (const $link of $links) {
+            const route = $link.dataset.url
+            $link.addEventListener('click', (e) => {
+              e.preventDefault()
+              this.route(route)
+              this.pushRoute(route)
+            })
+          }
+        }, 500)
       }
     }
     http.open('GET', url, true)

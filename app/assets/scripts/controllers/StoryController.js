@@ -11,21 +11,47 @@ export default class StoryController {
   }
 
   init(story) {
-    const scrollBar = new ScrollBar([
-      '',
-      'Compton',
-      '1959',
-      'Grammys',
-      'Architecture',
-      'Skatepark',
-      'Snoop\'s quote',
-      'Street Poetry',
-      'Noise Bompton',
-      'Kendrick Lamar',
-      'Others suburbs',
-    ], 'html', '70', '20')
+    let scrollBar = null
+    switch (story) {
+      case 'paris-seine':
+        scrollBar = new ScrollBar([
+          '',
+          'Compton',
+          '1959',
+          'Grammys',
+          'Architecture',
+          'Skatepark',
+          'Snoop\'s quote',
+          'Street Poetry',
+          'Noise Bompton',
+          'Kendrick Lamar',
+          'Others suburbs',
+          'Last',
+        ], 'html', '70', '20')
+        break;
+      case 'compton':
+        scrollBar = new ScrollBar([
+          '',
+          'Compton',
+          '1959',
+          'Grammys',
+          'Architecture',
+          'Skatepark',
+          'Snoop\'s quote',
+          'Street Poetry',
+          'Noise Bompton',
+          'Kendrick Lamar',
+          'Others suburbs',
+        ], 'html', '70', '20')
+        break;
+    }
+    const $links = document.querySelectorAll('.route-link')
+    for (const $link of $links) {
+      $link.addEventListener('click', () => {
+        scrollBar.removeScrollBar()
+      })
+    }
 
-    window.addEventListener('click', () => { scrollBar.removeScrollBar() }) // DEV
     document.body.style.overflow = 'auto'
     const $scrollBar = document.querySelector('.scrollBar')
     const $bulletPoints = $scrollBar.querySelectorAll('.scrollBar__bulletPoint')
