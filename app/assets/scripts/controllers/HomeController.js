@@ -46,9 +46,6 @@ export default class HomeController {
       $video.play()
       music.src = './assets/medias/intro.mp3'
       music.play()
-      TweenMax.to('.cover__intro', 1,
-        { opacity: '0', ease: Power1.easeOut }
-      )
 
       setTimeout(() => {
         videoController.fadeOutPause(1000)
