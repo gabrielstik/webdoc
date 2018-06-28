@@ -24,6 +24,8 @@ export default class StoryController {
       'Kendrick Lamar',
       'Others suburbs',
     ], 'html', '70', '20')
+
+    window.addEventListener('click', () => { scrollBar.removeScrollBar() }) // DEV
     document.body.style.overflow = 'auto'
     const $scrollBar = document.querySelector('.scrollBar')
     const $bulletPoints = $scrollBar.querySelectorAll('.scrollBar__bulletPoint')

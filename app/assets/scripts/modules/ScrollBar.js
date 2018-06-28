@@ -13,10 +13,10 @@ export default class ScrollBar {
 		this.oldWindow = 0
 		this.currentWindow = 0
 
-		const scrollBarWrapper = document.createElement('div')
-		scrollBarWrapper.classList.add('scrollBar')
-		scrollBarWrapper.style.height = scrollHeight + 'vh'
-		scrollBarWrapper.style.opacity = '0'
+		this.scrollBarWrapper = document.createElement('div')
+		this.scrollBarWrapper.classList.add('scrollBar')
+		this.scrollBarWrapper.style.height = scrollHeight + 'vh'
+		this.scrollBarWrapper.style.opacity = '0'
 
 		const chainHeight = Math.round((scrollHeight * window.innerHeight / 100) / (windowsTitle.length - 1) - (bulletPointDiametre / (windowsTitle.length)) - ((bulletPointDiametre / 2) / (windowsTitle.length * 2)))
 
@@ -49,7 +49,7 @@ export default class ScrollBar {
 
 			if (i == 0) {
 				bulletPoint.classList.add('scrollBar__bulletPoint--first')
-				scrollBarWrapper.appendChild(bulletPoint)
+				this.scrollBarWrapper.appendChild(bulletPoint)
 				bulletPoint.appendChild(bulletChain)
 			}
 			else if (i == windowsTitle.length.length - 1) {
@@ -63,7 +63,7 @@ export default class ScrollBar {
 
 			this.former = bulletChain
 
-			scrollBarContainer.appendChild(scrollBarWrapper)
+			scrollBarContainer.appendChild(this.scrollBarWrapper)
 		}
 		this.updateScroll(0)
 
@@ -92,7 +92,7 @@ export default class ScrollBar {
 		}
 
 		setTimeout(() => {
-			TweenMax.to(scrollBarWrapper, 1, { opacity: 1 })
+			TweenMax.to(this.scrollBarWrapper, 1, { opacity: 1 })
 			TweenMax.staggerFrom(this.bulletPoints, 0.1, { scale: 0 }, 0.04)
 		}, 1000);
 
@@ -185,5 +185,13 @@ export default class ScrollBar {
 	getWindowNumber()
 	{
 		return this.oldWindow
+	}
+	removeScrollBar()
+	{
+		TweenMax.to(this.scrollBarWrapper, 0.3, { opacity: 0, onComplete: this.removeDOM, onCompleteScope: this })
+	}
+	removeDOM()
+	{
+		this.scrollBarWrapper.remove()
 	}
 }
