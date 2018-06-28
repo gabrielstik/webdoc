@@ -38,6 +38,11 @@ export default class HomeController {
       $video.play()
     })
 
+    const $skip = document.querySelector('.cover__video--skip')
+    $skip.addEventListener('mousedown', () => {
+      $video.currentTime = $video.duration
+    })
+
     $video.addEventListener('ended', () => {
       this.router.route('map')
     })
