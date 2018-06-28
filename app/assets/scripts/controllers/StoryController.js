@@ -360,7 +360,7 @@ export default class StoryController {
       case 'de-rocinha':
         const drdrugs = new VideoPlayer('vp-drdrugs', './assets/medias/drdrugs.mp4', 'Young people studying in the middle of drugs traffic')
         const drfunk = new VideoPlayer('vp-drfunk', './assets/medias/drfunk.mp4', 'Funk Proibidao - Rio de Janeiro')
-        const grafiti = new VideoPlayer('vp-grafiti', './assets/medias/grafiti.mp4', 'Instituto Wark: Graffiti in Rocinha')
+        const grafiti = new VideoPlayer('vp-grafiti', './assets/medias/wark.mp4', 'Instituto Wark: Graffiti in Rocinha')
         return [
           drdrugs,
           drfunk,
