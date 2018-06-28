@@ -1,6 +1,10 @@
+import Parallax from "../modules/Parallax";
+
 export default class MapController {
 
   init() {
+    new Parallax('mapWrapper', 4, true)
+
     const $lands = document.querySelectorAll('.land')
     TweenMax.staggerFrom($lands, 1, { opacity: '0', ease: Power1.easeOut, delay: 1 }, .01)
 
