@@ -82,4 +82,8 @@ export default class MuteWindow
             audio.pause()
         }
     }
+    removeDOM()
+    {
+        this.muteButton.remove()
+    }
 }

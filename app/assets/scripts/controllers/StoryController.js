@@ -1,8 +1,9 @@
 import GraphCanvas from '../modules/GraphCanvas'
-import Parallax from '../modules/Parallax';
-import VideoPlayer from '../modules/VideoPlayer';
-import ScrollBar from '../modules/ScrollBar';
-import MuteWindow from '../modules/MuteWindow';
+import Parallax from '../modules/Parallax'
+import VideoPlayer from '../modules/VideoPlayer'
+import ScrollBar from '../modules/ScrollBar'
+import MuteWindow from '../modules/MuteWindow'
+import ImageMusic from '../modules/ImageMusic'
 
 export default class StoryController {
   constructor()
@@ -203,6 +204,11 @@ export default class StoryController {
     }
 
     if (document.querySelector('.paris-seine__interractive-youths')) {
+
+      const portSound = new Audio = ('assets/medias/port_scene.mp3')
+      this.audios.push(portSound)
+      
+      new ImageMusic('.paris-seine__port', portSound)
       
       const $youthOne = document.createElement('div')
       const $youthTwo = document.createElement('div')

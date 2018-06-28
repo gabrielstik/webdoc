@@ -5,9 +5,9 @@ export default class VideoPlayer
    * @param {div} wrapperClass - wrapper of video
    * @param {path} videoUrl - path to load video
    */
-  
-  constructor(wrapperClass, videoUrl, videoTitle)
-  {
+
+	constructor(wrapperClass, videoUrl, videoTitle)
+	{
     // Select container
     const wrapper = document.querySelector('.' + wrapperClass)
 
