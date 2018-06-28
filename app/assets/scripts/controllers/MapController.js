@@ -21,6 +21,14 @@ export default class MapController {
         $country.classList.remove('hover')
       })
     }
+
+    const $links = document.querySelectorAll('.infos__button')
+    for (const $link of $links) {
+      $link.style.display = 'none'
+    }
+    const $selectedLinks = document.querySelector('.infos__button.selected')
+    $selectedLinks.style.display = 'inline-block'
+
     
     this.events($lands)
   }
@@ -92,13 +100,22 @@ export default class MapController {
 
   loadThemes($country) {
     const $buttons = $country.querySelectorAll('.infos__theme')
-    const $link = $country.querySelector('.infos__button')
+    console.log($buttons)
+    const $links = $country.querySelectorAll('.infos__button')
     for (const $button of $buttons) {
       $button.addEventListener('mousedown', () => {
+        for (const $link of $links) {
+          $link.style.display = 'none'
+        }
         for (const $button of $buttons) {
           $button.classList.remove('selected')
         }
         $button.classList.add('selected')
+        for (const $link of $links) {
+          if ($link.dataset.url == $button.dataset.link) {
+            $link.style.display = 'inline-block'
+          }
+        }
       })
     }
   }
