@@ -105,4 +105,8 @@ export default class AudioController
         console.log('stopLoop')
         this.isLoop = false
     }
+    pauseSound()
+    {
+        this.audio.pause()
+    }
 }
