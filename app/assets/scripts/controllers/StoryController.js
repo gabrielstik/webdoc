@@ -26,9 +26,9 @@ export default class StoryController {
 
     this.backSound = 
     {
-      music: new AudioController(new Audio('assets/medias/fond_street_rap.mp3'), 0.2),
-      art: new AudioController(new Audio('assets/medias/street_art_fond.mp3'), 0.2),
-      sport: new AudioController(new Audio('assets/medias/sport_fond.mp3'), 0.2),
+      music: new AudioController(new Audio('assets/medias/fond_street_rap.mp3'), 0.05),
+      art: new AudioController(new Audio('assets/medias/street_art_fond.mp3'), 0.05),
+      sport: new AudioController(new Audio('assets/medias/sport_fond.mp3'), 0.05),
     }
     // this.audios = []
   }
