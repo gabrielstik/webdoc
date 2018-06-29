@@ -70,7 +70,7 @@ export default class VideoPlayer
 		wrapper.appendChild(this.videoContainer)
 
 		// Play or pause video when click on video
-		this.video.addEventListener('click', () => { this.video.paused ? this.playVideo() : this.pauseVideo() })
+    this.video.addEventListener('click', () => { this.video.paused ? this.playVideo() : this.pauseVideo() })
 
 		// Listen timeline events to update currentTime and timeline style
 		this.timeline.addEventListener('mousedown', () => 
@@ -126,7 +126,12 @@ export default class VideoPlayer
 
     // AppendChild timeline into videoContainer
     this.timeline.appendChild(this.timelineFill)
-		this.videoContainer.appendChild(this.timeline)
+    this.videoContainer.appendChild(this.timeline)
+    
+    this.video.addEventListener('keydown', (e) => {
+      console.log('ok')
+      if (e.keyCode == 32) this.video.paused ? this.playVideo() : this.pauseVideo()
+    })
 		
 		// Update timeline style
 		this.updateTimeline()

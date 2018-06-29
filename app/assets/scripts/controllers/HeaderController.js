@@ -7,6 +7,10 @@ export default class HeaderController {
       this.hideHeader()
     })
 
+    document.querySelector('.globe').addEventListener('mousedown', () => {
+      this.showHeader()
+    })
+
     const $links = document.querySelectorAll('.route-link')
     for (const $link of $links) {
       $link.addEventListener('mousedown', () => {
