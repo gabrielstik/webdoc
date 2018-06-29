@@ -5,6 +5,7 @@ import ScrollBar from '../modules/ScrollBar'
 import MuteWindow from '../modules/MuteWindow'
 import ImageMusic from '../modules/ImageMusic'
 import AudioController from '../modules/AudioController';
+import ParallaxScene from '../modules/ParallaxScene';
 
 export default class StoryController {
   constructor()
@@ -83,17 +84,17 @@ export default class StoryController {
       case 'paris-seine':
         scrollBar = new ScrollBar([
           '',
-          'Compton',
-          '1959',
-          'Grammys',
-          'Architecture',
-          'Skatepark',
-          'Snoop\'s quote',
-          'Street Poetry',
-          'Noise Bompton',
-          'Kendrick Lamar',
+          'Paris Seine',
+          '1962',
+          'La Courneuve',
+          'Mute suburbs',
+          'Youth bored',
+          'Youth interview',
+          'NTM',
+          '2000',
+          'PNL',
+          'Few numbers',
           'Others suburbs',
-          'Last',
         ], 'html', '70', '20')
         break;
       case 'compton':
@@ -114,49 +115,48 @@ export default class StoryController {
       case 'de-rocinha-music':
         scrollBar = new ScrollBar([
           '',
-          'Compton',
-          '1959',
-          'Grammys',
-          'Architecture',
-          'Skatepark',
-          'Snoop\'s quote',
-          'Street Poetry',
-          'Noise Bompton',
-          'Kendrick Lamar',
+          'De Rocinha',
+          '1800\'s',
+          'Interview',
+          'Carioca funk',
+          'Let\'s dance',
+          'Funk proibidao',
+          'Rio de Janeiro',
+          'Rapdas armas',
           'Others suburbs',
         ], 'html', '70', '20')
         break;
       case 'de-rocinha-street-art':
         scrollBar = new ScrollBar([
           '',
-          'Compton',
-          '1959',
-          'Grammys',
-          'Architecture',
-          'Skatepark',
-          'Snoop\'s quote',
-          'Street Poetry',
-          'Noise Bompton',
-          'Kendrick Lamar',
+          'De Rocinha',
+          '1800\'s',
+          'Interview',
+          'Grafitis',
+          'Street',
+          'Naopixe',
+          'Illegal',
+          'Paint here',
+          'Wark',
+          'Instituo wark',
           'Others suburbs',
         ], 'html', '70', '20')
         break;
       case 'miami':
         scrollBar = new ScrollBar([
           '',
-          'Compton',
-          '1959',
-          'Grammys',
-          'Architecture',
-          'Skatepark',
-          'Snoop\'s quote',
-          'Street Poetry',
-          'Noise Bompton',
-          'Kendrick Lamar',
+          'Wynwood',
+          '1950\'s',
+          'Street',
+          'From ghetto',
+          'Wynwood walls',
+          'It\'s so',
+          'Graph',
+          'Wynwood after',
           'Others suburbs',
         ], 'html', '70', '20')
         break;
-      case 'soweto':
+      case 'soweto': // Pas encore fait
         scrollBar = new ScrollBar([
           '',
           'Compton',
@@ -219,7 +219,7 @@ export default class StoryController {
       $bulletPoint.addEventListener('mousedown', () => {
         if(this.once) 
         {
-          TweenMax.to(document.body, .5,
+          TweenMax.to(document.body, 0,
             { transform: `translateY(-${index * 100}vh)`, ease: Power1.easeOut }
           )
           this.currentScroll = index
@@ -544,6 +544,24 @@ export default class StoryController {
       new GraphCanvas('de-rocinha__painting', 'assets/images/favelas/wall.jpeg', 'assets/images/favelas/wark.png', 'assets/images/favelas/warkBlend.png', 'Paint here')
       new Parallax('graph__wrapper', 1, true)
 
+    }
+    if (document.querySelector('.soweto')) 
+    {
+      const container = document.querySelector('.parallaxScene')
+      console.log(container)
+      // new ParallaxScene(container, ['assets/images/parallax/soweto/background.png', 'assets/images/parallax/soweto/man.png'], [1, 2])
+      new Parallax('parallaxBackground', 1, true)
+      new Parallax('parallaxMan', 1.5, true)
+    }
+
+    if (document.querySelector('.sao-paulo')) 
+    {
+      const container = document.querySelector('.parallaxScene')
+      console.log(container)
+      // new ParallaxScene(container, ['assets/images/parallax/soweto/background.png', 'assets/images/parallax/soweto/man.png'], [1, 2])
+      new Parallax('parallaxBackground', 1, true)
+      new Parallax('parallaxMan1', 1.4, true)
+      new Parallax('parallaxMan2', 1.2, true)
     }
 
     if (document.querySelector('.compton')) {
