@@ -23,12 +23,21 @@ export default class StoryController {
         clickSound.play()
       })
     }
+    this.audios = 
+    {
+      musicAudio : new Audio('assets/medias/fond_street_rap.mp3'),
+      artAudio : new Audio('assets/medias/street_art_fond.mp3'),
+      sportAudio : new Audio('assets/medias/sport_fond.mp3'),
+      music : [],
+      art : [],
+      sport : [],
+    }
 
     this.backSound = 
     {
-      music: new AudioController(new Audio('assets/medias/fond_street_rap.mp3'), 0.2),
-      art: new AudioController(new Audio('assets/medias/street_art_fond.mp3'), 0.2),
-      sport: new AudioController(new Audio('assets/medias/sport_fond.mp3'), 0.2),
+      music: new AudioController(this.audios.musicAudio, 0.2),
+      art: new AudioController(this.audios.artAudio, 0.2),
+      sport: new AudioController(this.audios.sportAudio, 0.2),
     }
     // this.audios = []
   }
@@ -44,10 +53,12 @@ export default class StoryController {
 
       const audios = []
 
-      audios.push(this.backSound.music)
+      audios.push(this.audios.musicAudio)
       console.log(audios)
 
       this.backSound.music.loop(6000)
+
+      console.log(this.backSound.music)
 
       new MuteWindow('html', audios, 'assets/images/icons/headphones.svg')
     }
@@ -60,7 +71,7 @@ export default class StoryController {
 
       const audios = []
 
-      audios.push(this.backSound.art)
+      audios.push(this.audios.artAudio)
 
       this.backSound.art.loop(6000)
 
@@ -74,7 +85,7 @@ export default class StoryController {
       this.backSound.music.pauseSound()
       const audios = []
 
-      audios.push(this.backSound.sport)
+      audios.push(this.audio.sportAudio)
 
       this.backSound.sport.loop(6000)
 
@@ -359,7 +370,6 @@ export default class StoryController {
         })
       })
     }
-
 
     if (document.querySelector('.story__outro')) {
       console.log('ok')

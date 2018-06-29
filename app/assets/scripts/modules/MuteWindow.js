@@ -2,7 +2,10 @@ export default class MuteWindow
 {
     constructor(containerClass, audiosArray = [], muteIconSrc, unMuteIconSrc = null)
     {
-        this.videos = document.querySelectorAll('.videoPlayer__video')
+        this.videos = null
+
+        this.tryCatchVideo()
+
         this.audios = audiosArray
 
         let muted = false
@@ -58,6 +61,26 @@ export default class MuteWindow
         {
             audio.muted = true
         }
+    }
+    tryCatchVideo()
+    {
+        const videos = document.querySelectorAll('video')
+
+        setTimeout(() => {
+
+            console.log(videos)
+            if(videos.length < 1) 
+            { 
+                console.log('try')
+                this.tryCatchVideo()
+            }
+            else
+            {
+                this.videos = videos
+                console.log(this.videos)
+            }
+        }, 50)
+
     }
     unMuteAll()
     {
