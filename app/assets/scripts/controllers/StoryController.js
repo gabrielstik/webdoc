@@ -376,6 +376,28 @@ export default class StoryController {
       const $youthOne = document.createElement('div')
       const $youthTwo = document.createElement('div')
       const $youthThree = document.createElement('div')
+
+      const cta = document.createElement('div')
+      cta.classList.add('cta')
+      const ctaRing = document.createElement('div')
+      ctaRing.classList.add('cta__ring')
+
+      const ctaTwo = document.createElement('div')
+      ctaTwo.classList.add('cta')
+      const ctaTwoRing = document.createElement('div')
+      ctaTwoRing.classList.add('cta__ring')
+
+      const ctaThree = document.createElement('div')
+      ctaThree.classList.add('cta')
+      const ctaThreeRing = document.createElement('div')
+      ctaThreeRing.classList.add('cta__ring')
+
+      cta.appendChild(ctaRing)
+      ctaTwo.appendChild(ctaTwoRing)
+      ctaThree.appendChild(ctaThreeRing)
+      $youthOne.appendChild(cta)
+      $youthTwo.appendChild(ctaTwo)
+      $youthThree.appendChild(ctaThree)
       
       const youthOne = new Audio('assets/medias/djeuns-1.m4a')
       const youthTwo = new Audio('assets/medias/djeuns-2.m4a')
@@ -405,21 +427,25 @@ export default class StoryController {
       $youthTwo.style.width = '10%'
       $youthThree.style.width = '14%'
 
+      $youthOne.style.display = 'flex'
+      $youthTwo.style.display = 'flex'
+      $youthThree.style.display = 'flex'
+
+      $youthOne.style.justifyContent = 'center'
+      $youthTwo.style.justifyContent = 'center'
+      $youthThree.style.justifyContent = 'center'
+
       $youthOne.style.minWidth = '100px'
       $youthTwo.style.minWidth = '100px'
       $youthThree.style.minWidth = '140px'
 
       $youthOne.style.height = '40%'
-      $youthTwo.style.height = '30%'
-      $youthThree.style.height = '30%'
+      $youthTwo.style.height = '40%'
+      $youthThree.style.height = '40%'
 
-      // $youthOne.style.backgroundColor = 'green'
-      // $youthTwo.style.backgroundColor = 'blue'
-      // $youthThree.style.backgroundColor = 'red'
-
-      $youthOne.style.opacity = '0.4'
-      $youthTwo.style.opacity = '0.4'
-      $youthThree.style.opacity = '0.4'
+      $youthOne.style.opacity = '1'
+      $youthTwo.style.opacity = '1'
+      $youthThree.style.opacity = '1'
 
       $youthOne.style.left = '40%'
       $youthTwo.style.left = '45%'
@@ -427,8 +453,8 @@ export default class StoryController {
       $youthThree.style.right = '55%'
 
       $youthOne.style.top = '3%'
-      $youthTwo.style.top = '43%'
-      $youthThree.style.top = '43%'
+      $youthTwo.style.top = '36%'
+      $youthThree.style.top = '37%'
 
       const $interractiveYouths = document.querySelector('.paris-seine__interractive-youths')
 
