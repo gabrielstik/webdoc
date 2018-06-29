@@ -4,8 +4,8 @@ import VideoPlayer from '../modules/VideoPlayer'
 import ScrollBar from '../modules/ScrollBar'
 import MuteWindow from '../modules/MuteWindow'
 import ImageMusic from '../modules/ImageMusic'
-import AudioController from '../modules/AudioController';
-import ParallaxScene from '../modules/ParallaxScene';
+import AudioController from '../modules/AudioController'
+import ParallaxScene from '../modules/ParallaxScene'
 
 export default class StoryController {
   constructor()
@@ -58,9 +58,7 @@ export default class StoryController {
 
       this.backSound.music.loop(6000)
 
-      console.log(this.backSound.music)
-
-      new MuteWindow('html', audios, 'assets/images/icons/headphones.svg')
+      new MuteWindow('html', audios, 'assets/images/icons/headphone.png')
     }
 
     if(document.querySelector('.art'))
@@ -75,7 +73,7 @@ export default class StoryController {
 
       this.backSound.art.loop(6000)
 
-      new MuteWindow('html', audios, 'assets/images/icons/headphones.svg')
+      new MuteWindow('html', audios, 'assets/images/icons/headphone.png')
     }
 
     if(document.querySelector('.sport'))
@@ -89,7 +87,7 @@ export default class StoryController {
 
       this.backSound.sport.loop(6000)
 
-      new MuteWindow('html', audios, 'assets/images/icons/headphones.svg')
+      new MuteWindow('html', audios, 'assets/images/icons/headphone.png')
     }
     
     switch (story) {

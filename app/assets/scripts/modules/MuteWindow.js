@@ -38,7 +38,6 @@ export default class MuteWindow
         this.muteButton.style.display = 'flex'
         this.muteButton.style.justifyContent = 'center'
         this.muteButton.style.alignItems = 'baseline'
-        this.muteButton.style.backgroundColor = '#0e18bb'
 
         container.appendChild(this.muteButton)
 
