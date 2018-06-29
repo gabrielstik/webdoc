@@ -41,3 +41,32 @@ body
 .window
   height 100vh
   position relative
+
+.cta
+  width 60px
+  height 60px
+
+  border-radius 100%
+  border 1px solid $blue
+  display flex
+  justify-content center
+  align-items center
+  animation cta 1s ease-in infinite
+
+.cta__ring
+  width 40px
+  height 40px
+
+  border-radius 100%
+  background-color $blue
+
+@keyframes cta {
+  from 
+  {
+    transform scale(1)
+  }
+  to
+  {
+    transform scale(0.9)
+  }
+}

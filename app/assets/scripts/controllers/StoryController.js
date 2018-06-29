@@ -514,17 +514,9 @@ export default class StoryController {
     }
 
     if (document.querySelector('.story-rio-streetart')) {
-      const audios = []
 
-      const backSound = new Audio('assets/medias/street_art_fond.mp3')
-      audios.push(backSound)
-      backSound.volume = 0.1
-      const backSoundController = new AudioController(backSound, 0.2)
-      backSoundController.loop(6000)
-
-      new GraphCanvas('de-rocinha__painting', 'assets/images/favelas/wall.jpeg', 'assets/images/favelas/wark.png', 'assets/images/favelas/warkBlend.png')
+      new GraphCanvas('de-rocinha__painting', 'assets/images/favelas/wall.jpeg', 'assets/images/favelas/wark.png', 'assets/images/favelas/warkBlend.png', 'Paint here')
       new Parallax('graph__wrapper', 1, true)
-      new MuteWindow('html', audios, 'assets/images/icons/headphones.svg')
 
     }
 
