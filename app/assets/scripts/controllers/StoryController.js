@@ -48,7 +48,7 @@ export default class StoryController {
 
       this.backSound.music.loop(6000)
 
-      new MuteWindow('html', audios, 'assets/images/icons/headphones.svg')
+      new MuteWindow('html', audios, 'assets/images/icons/headphone.png')
     }
 
     if(document.querySelector('.art'))
@@ -63,7 +63,7 @@ export default class StoryController {
 
       this.backSound.art.loop(6000)
 
-      new MuteWindow('html', audios, 'assets/images/icons/headphones.svg')
+      new MuteWindow('html', audios, 'assets/images/icons/headphone.png')
     }
 
     if(document.querySelector('.sport'))
@@ -77,7 +77,7 @@ export default class StoryController {
 
       this.backSound.sport.loop(6000)
 
-      new MuteWindow('html', audios, 'assets/images/icons/headphones.svg')
+      new MuteWindow('html', audios, 'assets/images/icons/headphone.png')
     }
     
     switch (story) {
@@ -366,7 +366,7 @@ export default class StoryController {
     if (document.querySelector('.paris-seine__interractive-youths')) {
 
       const audios = []
-      new MuteWindow('html', audios, 'assets/images/icons/headphones.svg')
+      new MuteWindow('html', audios, 'assets/images/icons/headphone.png')
 
       const portSound = new Audio('assets/medias/port_scene.mp3')
       
