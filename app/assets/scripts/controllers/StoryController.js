@@ -45,6 +45,7 @@ export default class StoryController {
       const audios = []
 
       audios.push(this.backSound.music)
+      console.log(audios)
 
       this.backSound.music.loop(6000)
 
@@ -348,6 +349,14 @@ export default class StoryController {
     for (const video of videos) {
       video.getVideoDOM().addEventListener('mouseenter', () => {
         video.playVideo()
+
+        window.addEventListener('keydown', (event) => 
+        { 
+          if(event.keyCode == 32) 
+          { 
+            video.video.paused ? video.playVideo() : video.pauseVideo() 
+          } 
+        })
       })
     }
 
@@ -366,7 +375,7 @@ export default class StoryController {
     if (document.querySelector('.paris-seine__interractive-youths')) {
 
       const audios = []
-      new MuteWindow('html', audios, 'assets/images/icons/headphones.svg')
+      // new MuteWindow('html', audios, 'assets/images/icons/headphones.svg')
 
       const portSound = new Audio('assets/medias/port_scene.mp3')
       
