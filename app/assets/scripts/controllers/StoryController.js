@@ -35,9 +35,9 @@ export default class StoryController {
 
     this.backSound = 
     {
-      music: new AudioController(this.audios.musicAudio, 0.2),
-      art: new AudioController(this.audios.artAudio, 0.2),
-      sport: new AudioController(this.audios.sportAudio, 0.2),
+      music: new AudioController(this.audios.musicAudio, 0.05),
+      art: new AudioController(this.audios.artAudio, 0.05),
+      sport: new AudioController(this.audios.sportAudio, 0.05),
     }
     // this.audios = []
   }
