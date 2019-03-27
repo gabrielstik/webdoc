@@ -4,8 +4,8 @@ import VideoPlayer from '../modules/VideoPlayer'
 import ScrollBar from '../modules/ScrollBar'
 import MuteWindow from '../modules/MuteWindow'
 import ImageMusic from '../modules/ImageMusic'
-import AudioController from '../modules/AudioController';
-import ParallaxScene from '../modules/ParallaxScene';
+import AudioController from '../modules/AudioController'
+import ParallaxScene from '../modules/ParallaxScene'
 
 export default class StoryController {
   constructor()
@@ -23,12 +23,21 @@ export default class StoryController {
         clickSound.play()
       })
     }
+    this.audios = 
+    {
+      musicAudio : new Audio('assets/medias/fond_street_rap.mp3'),
+      artAudio : new Audio('assets/medias/street_art_fond.mp3'),
+      sportAudio : new Audio('assets/medias/sport_fond.mp3'),
+      music : [],
+      art : [],
+      sport : [],
+    }
 
     this.backSound = 
     {
-      music: new AudioController(new Audio('assets/medias/fond_street_rap.mp3'), 0.05),
-      art: new AudioController(new Audio('assets/medias/street_art_fond.mp3'), 0.05),
-      sport: new AudioController(new Audio('assets/medias/sport_fond.mp3'), 0.05),
+      music: new AudioController(this.audios.musicAudio, 0.05),
+      art: new AudioController(this.audios.artAudio, 0.05),
+      sport: new AudioController(this.audios.sportAudio, 0.05),
     }
     // this.audios = []
   }
@@ -44,7 +53,7 @@ export default class StoryController {
 
       const audios = []
 
-      audios.push(this.backSound.music)
+      audios.push(this.audios.musicAudio)
 
       this.backSound.music.loop(6000)
 
@@ -59,7 +68,7 @@ export default class StoryController {
 
       const audios = []
 
-      audios.push(this.backSound.art)
+      audios.push(this.audios.artAudio)
 
       this.backSound.art.loop(6000)
 
@@ -73,7 +82,7 @@ export default class StoryController {
       this.backSound.music.pauseSound()
       const audios = []
 
-      audios.push(this.backSound.sport)
+      audios.push(this.audio.sportAudio)
 
       this.backSound.sport.loop(6000)
 
@@ -348,12 +357,18 @@ export default class StoryController {
     for (const video of videos) {
       video.getVideoDOM().addEventListener('mouseenter', () => {
         video.playVideo()
+
+        window.addEventListener('keydown', (event) => 
+        { 
+          if(event.keyCode == 32) 
+          { 
+            video.video.paused ? video.playVideo() : video.pauseVideo() 
+          } 
+        })
       })
     }
 
-
     if (document.querySelector('.story__outro')) {
-      console.log('ok')
       document.querySelector('.story__outro').addEventListener('mouseenter', () => {
         const $text = document.querySelector('.story__outro--title')
         $text.style.opacity = '1'
@@ -366,7 +381,7 @@ export default class StoryController {
     if (document.querySelector('.paris-seine__interractive-youths')) {
 
       const audios = []
-      new MuteWindow('html', audios, 'assets/images/icons/headphone.png')
+      // new MuteWindow('html', audios, 'assets/images/icons/headphones.svg')
 
       const portSound = new Audio('assets/medias/port_scene.mp3')
       
@@ -548,7 +563,6 @@ export default class StoryController {
     if (document.querySelector('.soweto')) 
     {
       const container = document.querySelector('.parallaxScene')
-      console.log(container)
       // new ParallaxScene(container, ['assets/images/parallax/soweto/background.png', 'assets/images/parallax/soweto/man.png'], [1, 2])
       new Parallax('parallaxBackground', 1, true)
       new Parallax('parallaxMan', 1.5, true)
@@ -557,7 +571,6 @@ export default class StoryController {
     if (document.querySelector('.sao-paulo')) 
     {
       const container = document.querySelector('.parallaxScene')
-      console.log(container)
       // new ParallaxScene(container, ['assets/images/parallax/soweto/background.png', 'assets/images/parallax/soweto/man.png'], [1, 2])
       new Parallax('parallaxBackground', 1, true)
       new Parallax('parallaxMan1', 1.4, true)

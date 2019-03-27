@@ -31,8 +31,6 @@ export default class MapController {
     {
       blueButton.addEventListener('click', () => 
       {
-        console.log('clickButton')
-        console.log(this.backSoundController)
         this.backSoundController.removeLoop()
         this.backSoundController.fadeOutPause(3000)
         // backSound.pause()

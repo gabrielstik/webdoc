@@ -20,6 +20,5 @@
 
 //             // new Parallax(img, imgAmplitudes[index], true)
 //         }
-//         console.log(this.img)
 //     }
 // }
