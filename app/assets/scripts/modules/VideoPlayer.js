@@ -129,7 +129,6 @@ export default class VideoPlayer
     this.videoContainer.appendChild(this.timeline)
     
     this.video.addEventListener('keydown', (e) => {
-      console.log('ok')
       if (e.keyCode == 32) this.video.paused ? this.playVideo() : this.pauseVideo()
     })
 		

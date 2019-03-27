@@ -75,7 +75,6 @@ export default class AudioController
         { 
             this.isLoop = true
             this.audio.play()
-            console.log('PLAY ' + this.audio)
         }
 
         this.once[2] = false
@@ -102,7 +101,6 @@ export default class AudioController
     }
     removeLoop()
     {
-        console.log('stopLoop')
         this.isLoop = false
     }
     pauseSound()

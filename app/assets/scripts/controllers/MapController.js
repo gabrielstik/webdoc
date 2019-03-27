@@ -12,8 +12,6 @@ export default class MapController {
     audios.push(backSound)
 
     this.backSoundController = new AudioController(backSound)
-    new MuteWindow('html', audios, 'assets/images/icons/headphones.svg')
-
     this.backSoundController.loop(10000)
 
     new Parallax('mapWrapper', 4, true)

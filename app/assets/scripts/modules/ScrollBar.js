@@ -168,7 +168,6 @@ export default class ScrollBar {
 
 		if(this.oldWindow < windowIndex)
 		{
-			console.log((windowIndex / this.bulletPoints.length * 0.1))
 			TweenMax.staggerTo(bulletPointFills, 0.1, { scale: 1 , ease: Power1.easeOut}, 0.1 - (windowIndex / this.bulletPoints.length * 0.1))
 			TweenMax.staggerTo(bulletChainFills, 0.1, { scale: 1 , ease: Power0.easeOut}, 0.1 - (windowIndex / this.bulletPoints.length * 0.1))
 			TweenMax.staggerTo(bulletPoint, 0.1, { borderWidth: '0px' , ease: Power0.easeOut}, 0.1 - (windowIndex / this.bulletPoints.length * 0.1))

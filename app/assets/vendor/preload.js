@@ -77,7 +77,7 @@ for (const image of images) {
   imageObject.src = `assets/images/${image}`
 }
 for (const video of videos) {
-  const videoObject = new Video()
+  const videoObject = document.createElement("video")
   videoObject.src = `assets/medias/${video}`
 }
 for (const audio of audios) {

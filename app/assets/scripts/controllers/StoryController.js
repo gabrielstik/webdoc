@@ -265,7 +265,7 @@ export default class StoryController {
     })
 
     window.addEventListener('wheel', (e) => {
-      e.preventDefault()
+      // e.preventDefault()
       e.stopPropagation()
       if (lethargy.check(e) !== false) {
         if (isScrolling == false) {
